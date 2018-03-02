@@ -220,7 +220,7 @@ function confirmarPedido() {
                 }
 
                 if (j == 5) {
-                    precioTotal += (parseFloat(oCells.item(j).firstChild.innerHTML) * 1);
+                    precioTotal += parseFloat(oCells.item(j).firstChild.textContent);
                     //precioTotal += parseFloat(document.getElementsByClassName("total")[i].innerHTML);
                     alert("precioTotal " + precioTotal);
                     alert(oCells.item(j).firstChild.textContent);
@@ -231,7 +231,7 @@ function confirmarPedido() {
             }
             if (j == 6) {
                 idProducto = oCells.item(j).firstChild.id;
-                alert("id: "+idProducto);
+                alert("id del producto es: "+idProducto);
             }
         }
 
@@ -242,7 +242,7 @@ function confirmarPedido() {
     }
 
     var date = obtenerFechaDeHoy();
-    var pedidoPost = new PedidoConLineaPedido(lineas, 1, date/*"2018-02-13T12:53:12.433"*/, precioTotal);
+    var pedidoPost = new PedidoConLineaPedido(lineas, 1, "2018-02-13T12:53:12.433", precioTotal);
     
     addPedido(pedidoPost);
 
