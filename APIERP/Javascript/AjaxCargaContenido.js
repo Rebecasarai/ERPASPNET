@@ -83,11 +83,6 @@ function cargarPedidos() {
                         var tdFecha = document.createElement("td");
                         var tdPrecioTotal = document.createElement("td");
                         var tdBorrar = document.createElement("td");
-                        /*var tdAltura = document.createElement("td");
-                        var tdCabello = document.createElement("td");
-                        var tdEditar = document.createElement("td");
-                        var tdPrecio = document.createElement("td");
-                        var tdCarrito = document.createElement("td");*/
 
                         var post = arrayPosts[i];
                         tdId.innerHTML = post.ID;
@@ -96,14 +91,6 @@ function cargarPedidos() {
                         tdPrecioTotal.innerHTML = post.PrecioTotal;
 
                         mRow.setAttribute("class", "fila" + post.id);
-
-
-                        //botones
-                        /*var botonEditar = document.createElement("button");
-                        botonEditar.setAttribute('class', 'btn bntEditar btn-default btnEditar' + post.id);
-                        botonEditar.setAttribute('id', post.id);
-                        botonEditar.innerHTML = "Editar";
-                        tdEditar.appendChild(botonEditar);*/
 
                         var botonborrar = document.createElement("button");
                         botonborrar.setAttribute('class', 'btn btnBorrar btn-default btnBorrar' + post.id);
@@ -116,18 +103,12 @@ function cargarPedidos() {
                         mRow.appendChild(tdFecha);
                         mRow.appendChild(tdPrecioTotal);
                         mRow.appendChild(tdBorrar);
-                        //mRow.appendChild(tdCarrito);
-
-                        
-                        //botonborrar.addEventListener("click", borrar);
 
                         tabla.appendChild(mRow);
                     }
                     root.appendChild(tabla);
 
-
                     cargarBuscador();
-
                 }
             }
             XMLHTR.send();

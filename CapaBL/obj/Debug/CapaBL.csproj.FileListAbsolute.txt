@@ -18,3 +18,13 @@ C:\Users\rsgonzalez\Desktop\APIERP\CapaBL\obj\Debug\CapaBL.csprojResolveAssembly
 C:\Users\rsgonzalez\Desktop\APIERP\CapaBL\obj\Debug\CapaBL.csproj.CoreCompileInputs.cache
 C:\Users\rsgonzalez\Desktop\APIERP\CapaBL\obj\Debug\CapaBL.dll
 C:\Users\rsgonzalez\Desktop\APIERP\CapaBL\obj\Debug\CapaBL.pdb
+C:\Users\Rebeca\Desktop\OnlineERP\CapaBL\bin\Debug\CapaBL.dll
+C:\Users\Rebeca\Desktop\OnlineERP\CapaBL\bin\Debug\CapaBL.pdb
+C:\Users\Rebeca\Desktop\OnlineERP\CapaBL\bin\Debug\CapaDAL.dll
+C:\Users\Rebeca\Desktop\OnlineERP\CapaBL\bin\Debug\Entities.dll
+C:\Users\Rebeca\Desktop\OnlineERP\CapaBL\bin\Debug\CapaDAL.pdb
+C:\Users\Rebeca\Desktop\OnlineERP\CapaBL\bin\Debug\Entities.pdb
+C:\Users\Rebeca\Desktop\OnlineERP\CapaBL\obj\Debug\CapaBL.csprojResolveAssemblyReference.cache
+C:\Users\Rebeca\Desktop\OnlineERP\CapaBL\obj\Debug\CapaBL.csproj.CoreCompileInputs.cache
+C:\Users\Rebeca\Desktop\OnlineERP\CapaBL\obj\Debug\CapaBL.dll
+C:\Users\Rebeca\Desktop\OnlineERP\CapaBL\obj\Debug\CapaBL.pdb

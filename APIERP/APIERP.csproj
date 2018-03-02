@@ -88,6 +88,9 @@
     <Content Include="Global.asax" />
     <Content Include="Javascript\AjaxCargaContenido.js" />
     <Content Include="Javascript\dynamicmenu.js" />
+    <Content Include="Javascript\LineaDePedido.js" />
+    <Content Include="Javascript\Pedido.js" />
+    <Content Include="Javascript\PedidoConLineaPedido.js" />
     <Content Include="Javascript\validation.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.css" />

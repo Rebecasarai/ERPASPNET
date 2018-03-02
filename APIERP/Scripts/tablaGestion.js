@@ -7,21 +7,23 @@ var tableHead;
 var filasBorradas = 0;
 var arraycosas = [];
 var pedido;
-var resultado;
+var resultado = 0;
+
+var precioTotal = 0;
+var lineasDeProductos = 0;
+
+var productos = [];
+var cantidad = 0;
+
+
 
 function displayResult() {
-
-   
-
-
-   
-
+    
     //document.getElementById("table1").insertRow(-1).innerHTML = '<td>Producto</td><td>Stock</td><td>Descripción</td><td>Cantidad</td><td>Precio Total</td>';
     dataTable = document.getElementById('table1');
     tableHead = document.getElementById('table-head');
     tbody = document.createElement('tbody');
     
-
     /*while (dataTable.firstChild) {
         dataTable.removeChild(dataTable.firstChild);
     }*/
@@ -35,13 +37,18 @@ function displayResult() {
         td4 = document.createElement('td'),
         td5 = document.createElement('td'),
         td6 = document.createElement('td'),
+        td7 = document.createElement('td'),
         btnDelete = document.createElement('input');
 
+
+    td7.style.display = "none";
+    td5.setAttribute('class', "total");
     btnDelete.setAttribute('type', 'button');
     btnDelete.setAttribute('class', 'btnDelete');
     btnDelete.setAttribute('id', fila);
     btnDelete.setAttribute('value', "Eliminar");
     btnDelete.setAttribute('name', fila);
+
 
     tr.appendChild(td0);
     tr.appendChild(td1);
@@ -50,6 +57,8 @@ function displayResult() {
     tr.appendChild(td4);
     tr.appendChild(td5);
     tr.appendChild(td6);
+    tr.appendChild(td7);
+    
 
     id = "slcProductos" + fila;
     //$('.js-example-basic-single').select2;
@@ -64,11 +73,14 @@ function displayResult() {
         //Si el nombre del producto elegido está en el array auxiliar, cambiar el seleccionado al por defecto
         for (var i = 0; i < arraycosas.length; i++) {
             if (arraycosas[i].Nombre === td0.firstChild.value) {
+
+                td7.setAttribute("id", arraycosas[i].ID);
+                alert("idProducto"+arraycosas[i].ID);
                 productoSeleccionado = arraycosas[i];
+                alert("Producto seleccionado: " + productoSeleccionado.Nombre);
+
             }
         }
-    
-    
     
         if (td0.firstChild.value === "") {
             td1.innerHTML = "";
@@ -79,26 +91,35 @@ function displayResult() {
         } else {
             var x = document.createElement("INPUT");
             x.setAttribute("type", "number");
-            x.addEventListener("change", new function () {
-                resultado = this.value * td4.innerHTML;
-                td5.innerHTML = resultado;
-            });
+            x.setAttribute("id", "cantidadinput");
+            x.setAttribute("class", "cantidadinput");
+            x.setAttribute("value", "1");
+            x.value = 1;
             //x.setAttribute("minValue", "1");
             x.min = "1";
             x.value = "1";
             x.max = "123";
+
+            
+
             x.onkeypress = function (evt) {
                 evt.preventDefault();
             };
 
-        
-
             td1.innerHTML = productoSeleccionado.Stock; //stock de la api
             td2.innerHTML = productoSeleccionado.Descripcion;//descrupcion
+            td4.innerHTML = productoSeleccionado.PrecioUnitario;
             if (td3.firstChild == null) {
                 td3.appendChild(x); //cantidad
             }
-            td4.innerHTML = productoSeleccionado.PrecioUnitario;//precio
+
+            x.addEventListener("change", new function () {
+                //resultado = parseInt(this.value) * parseInt(td4.innerHTML);
+                resultado = parseFloat(document.getElementById("cantidadinput").value) * parseFloat(td4.innerHTML);
+                td5.innerHTML = resultado;
+            });
+
+           //precio
                 //Meter producto en el array auxiliar
         }
     });
@@ -123,30 +144,20 @@ function displayResult() {
 
             if (XMLHTR.readyState === 4 && XMLHTR.status === 200 || XMLHTR.readyState === 4 && XMLHTR.status === 204) {
                 arraycosas = JSON.parse(XMLHTR.responseText);
-                alert(arraycosas);
 
                 for (var i = 0; i < arraycosas.length; i++) {
                     var option = document.createElement("option");
                     option.value = arraycosas[i].Nombre;
                     option.text = arraycosas[i].Nombre;
                     option.style.width = "200px";
-                    //alert(arraycosas[i].Nombre);
                     td0.firstChild.appendChild(option);
-
-                    
-
-
-
                 }
-
-
-
+                
             }
         }
         XMLHTR.send();
     }
-
-
+    
     
     td6.appendChild(btnDelete);
 
@@ -161,45 +172,81 @@ function displayResult() {
 }
 
 function confirmarPedido() {
-    //alert("pedido hacido xd")
+
+
+    alert("pedido");
+
+    
     var pedido = "";
     //gets table
     var oTable = document.getElementById('table1');
 
     //gets rows of table
     var rowLength = oTable.rows.length;
+    alert("Lineas de pedido: " + rowLength);
+
+
+    var lineas = [];
 
     //loops through rows    
     for (i = 1; i < rowLength; i++) {
-
+        
         //gets cells of current row  
         var oCells = oTable.rows.item(i).cells;
 
         //gets amount of cells of current row
         var cellLength = oCells.length;
+        lineasDeProductos = cellLength;
 
         //--------------HAY QUE HACER QUE LAS QUE NO SE VEN NO SE METAN EN EN PEDIDO--------------
 
         //if(se ve la row)
-       
+
+
+        var idProducto = 0;
             //loops through each cell in current row
         for (var j = 0; j < cellLength; j++) {
             if ($(oTable.rows.item(i)).is(':visible')) {
                 if (j == 0) {
                     pedido = pedido + oCells.item(j).firstChild.value + " ";
-                    //alert(cellVal);
                 } else if (j == 3) {
                     pedido = pedido + oCells.item(j).firstChild.value + " | ";
-                    //alert(cellVal);
                 }
+
+                if (j == 3) {
+                    cantidad = parseFloat(oCells.item(j).firstChild.value) * 1;
+                    alert("cantidad " + cantidad);
+                    alert(oCells.item(j).firstChild.value);
+                }
+
+                if (j == 5) {
+                    precioTotal += (parseFloat(oCells.item(j).firstChild.innerHTML) * 1);
+                    //precioTotal += parseFloat(document.getElementsByClassName("total")[i].innerHTML);
+                    alert("precioTotal " + precioTotal);
+                    alert(oCells.item(j).firstChild.textContent);
+                    alert("desde this: " + parseFloat(oCells.item(j).firstChild.textContent));
+                    //alert(parseFloat(document.getElementsByClassName("total")[i].innerHTML));
+                }
+
             }
-                // get your cell info here
-                /*
-                var cellVal = oCells.item(j).innerHTML;
-                alert(cellVal);
-                */
+            if (j == 6) {
+                idProducto = oCells.item(j).firstChild.id;
+                alert("id: "+idProducto);
             }
+        }
+
+        alert(pedido);
+        var linea = new LineaDePedido(idProducto, cantidad, resultado);
+        lineas.push(linea);
+        
     }
+
+    var date = obtenerFechaDeHoy();
+    var pedidoPost = new PedidoConLineaPedido(lineas, 1, date/*"2018-02-13T12:53:12.433"*/, precioTotal);
+    
+    addPedido(pedidoPost);
+
+
     document.getElementById("pedidoHecho").innerHTML = pedido;
     borrarTabla();
 }
@@ -225,31 +272,40 @@ function borrarTabla() {
 }
 
 
-function addPedido() {
+function addPedido(pedido) {
+    
+    var url = '../api/Pedido';
 
-    var nombreAdd = document.getElementById('formNombre').value;
-    var apellidoAdd = document.getElementById('formApellido').value;
-    var direccionAdd = document.getElementById('formDireccion').value;
-    var telefonoAdd = document.getElementById('formTelefono').value;
-    var fechaAdd = document.getElementById('formFecha').value;
-
-    var persona = new Person(nombreAdd, apellidoAdd, direccionAdd, telefonoAdd, fechaAdd);
-
-    var url = '../api/Persona';
-
-    var json = JSON.stringify(persona);
+    var json = JSON.stringify(pedido);
+    alert(json);
 
     var xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
     xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == "204" /*|| xhr.status == "200"*/) {
-            var modalbodyAdd = document.getElementById('modalbodyAdd');
-            var divSuccess = document.createElement('div');
-            divSuccess.setAttribute('class', 'alert alert-success');
-            divSuccess.innerHTML = 'Persona ' + persona.Nombre + 'añadida exitosamente';
-            listarPersonas();
+            alert("Se ha insertado correctamente");
         }
     }
     xhr.send(json);
+}
+
+function obtenerFechaDeHoy() {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+    var hh = today.getHours();
+
+    if (dd < 10) {
+        dd = '0' + dd
+    }
+
+    if (mm < 10) {
+        mm = '0' + mm
+    }
+
+    today = yyyy + '-' + mm + '-' + dd +"T12:53:12.433";
+    //2018-02-13T12:53:12.433
+    return today;
 }

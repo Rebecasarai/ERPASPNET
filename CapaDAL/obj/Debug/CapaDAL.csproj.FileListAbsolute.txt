@@ -14,3 +14,11 @@ C:\Users\rsgonzalez\Desktop\APIERP\CapaDAL\obj\Debug\CapaDAL.csprojResolveAssemb
 C:\Users\rsgonzalez\Desktop\APIERP\CapaDAL\obj\Debug\CapaDAL.csproj.CoreCompileInputs.cache
 C:\Users\rsgonzalez\Desktop\APIERP\CapaDAL\obj\Debug\CapaDAL.dll
 C:\Users\rsgonzalez\Desktop\APIERP\CapaDAL\obj\Debug\CapaDAL.pdb
+C:\Users\Rebeca\Desktop\OnlineERP\CapaDAL\bin\Debug\CapaDAL.dll
+C:\Users\Rebeca\Desktop\OnlineERP\CapaDAL\bin\Debug\CapaDAL.pdb
+C:\Users\Rebeca\Desktop\OnlineERP\CapaDAL\bin\Debug\Entities.dll
+C:\Users\Rebeca\Desktop\OnlineERP\CapaDAL\bin\Debug\Entities.pdb
+C:\Users\Rebeca\Desktop\OnlineERP\CapaDAL\obj\Debug\CapaDAL.csprojResolveAssemblyReference.cache
+C:\Users\Rebeca\Desktop\OnlineERP\CapaDAL\obj\Debug\CapaDAL.csproj.CoreCompileInputs.cache
+C:\Users\Rebeca\Desktop\OnlineERP\CapaDAL\obj\Debug\CapaDAL.dll
+C:\Users\Rebeca\Desktop\OnlineERP\CapaDAL\obj\Debug\CapaDAL.pdb
