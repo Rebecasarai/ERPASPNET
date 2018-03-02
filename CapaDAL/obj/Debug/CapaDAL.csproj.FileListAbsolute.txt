@@ -1,0 +1,16 @@
+C:\Users\icastillo\Desktop\GitHub\CSharp\APIERP\CapaDAL\bin\Debug\CapaDAL.dll
+C:\Users\icastillo\Desktop\GitHub\CSharp\APIERP\CapaDAL\bin\Debug\CapaDAL.pdb
+C:\Users\icastillo\Desktop\GitHub\CSharp\APIERP\CapaDAL\bin\Debug\Entities.dll
+C:\Users\icastillo\Desktop\GitHub\CSharp\APIERP\CapaDAL\bin\Debug\Entities.pdb
+C:\Users\icastillo\Desktop\GitHub\CSharp\APIERP\CapaDAL\obj\Debug\CapaDAL.csprojResolveAssemblyReference.cache
+C:\Users\icastillo\Desktop\GitHub\CSharp\APIERP\CapaDAL\obj\Debug\CapaDAL.csproj.CoreCompileInputs.cache
+C:\Users\icastillo\Desktop\GitHub\CSharp\APIERP\CapaDAL\obj\Debug\CapaDAL.dll
+C:\Users\icastillo\Desktop\GitHub\CSharp\APIERP\CapaDAL\obj\Debug\CapaDAL.pdb
+C:\Users\rsgonzalez\Desktop\APIERP\CapaDAL\bin\Debug\CapaDAL.dll
+C:\Users\rsgonzalez\Desktop\APIERP\CapaDAL\bin\Debug\CapaDAL.pdb
+C:\Users\rsgonzalez\Desktop\APIERP\CapaDAL\bin\Debug\Entities.dll
+C:\Users\rsgonzalez\Desktop\APIERP\CapaDAL\bin\Debug\Entities.pdb
+C:\Users\rsgonzalez\Desktop\APIERP\CapaDAL\obj\Debug\CapaDAL.csprojResolveAssemblyReference.cache
+C:\Users\rsgonzalez\Desktop\APIERP\CapaDAL\obj\Debug\CapaDAL.csproj.CoreCompileInputs.cache
+C:\Users\rsgonzalez\Desktop\APIERP\CapaDAL\obj\Debug\CapaDAL.dll
+C:\Users\rsgonzalez\Desktop\APIERP\CapaDAL\obj\Debug\CapaDAL.pdb

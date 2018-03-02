@@ -1,0 +1,12 @@
+C:\Users\icastillo\Desktop\GitHub\CSharp\APIERP\Entities\bin\Debug\Entities.dll
+C:\Users\icastillo\Desktop\GitHub\CSharp\APIERP\Entities\bin\Debug\Entities.pdb
+C:\Users\icastillo\Desktop\GitHub\CSharp\APIERP\Entities\obj\Debug\Entities.csprojResolveAssemblyReference.cache
+C:\Users\icastillo\Desktop\GitHub\CSharp\APIERP\Entities\obj\Debug\Entities.csproj.CoreCompileInputs.cache
+C:\Users\icastillo\Desktop\GitHub\CSharp\APIERP\Entities\obj\Debug\Entities.dll
+C:\Users\icastillo\Desktop\GitHub\CSharp\APIERP\Entities\obj\Debug\Entities.pdb
+C:\Users\rsgonzalez\Desktop\APIERP\Entities\bin\Debug\Entities.dll
+C:\Users\rsgonzalez\Desktop\APIERP\Entities\bin\Debug\Entities.pdb
+C:\Users\rsgonzalez\Desktop\APIERP\Entities\obj\Debug\Entities.csprojResolveAssemblyReference.cache
+C:\Users\rsgonzalez\Desktop\APIERP\Entities\obj\Debug\Entities.csproj.CoreCompileInputs.cache
+C:\Users\rsgonzalez\Desktop\APIERP\Entities\obj\Debug\Entities.dll
+C:\Users\rsgonzalez\Desktop\APIERP\Entities\obj\Debug\Entities.pdb

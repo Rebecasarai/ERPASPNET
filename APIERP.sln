@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2010
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIERP", "APIERP\APIERP.csproj", "{BC575F0D-4F55-4D05-B1E9-ADAF54490702}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{6C4B2A6F-573A-4374-ADD6-57406C274B53}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaDAL", "CapaDAL\CapaDAL.csproj", "{9748127C-93BB-488D-8D75-4FBDB5053635}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaBL", "CapaBL\CapaBL.csproj", "{6588F3A4-249A-4972-B3AE-7050C0B104C2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BC575F0D-4F55-4D05-B1E9-ADAF54490702}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC575F0D-4F55-4D05-B1E9-ADAF54490702}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC575F0D-4F55-4D05-B1E9-ADAF54490702}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC575F0D-4F55-4D05-B1E9-ADAF54490702}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C4B2A6F-573A-4374-ADD6-57406C274B53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C4B2A6F-573A-4374-ADD6-57406C274B53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C4B2A6F-573A-4374-ADD6-57406C274B53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C4B2A6F-573A-4374-ADD6-57406C274B53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9748127C-93BB-488D-8D75-4FBDB5053635}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9748127C-93BB-488D-8D75-4FBDB5053635}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9748127C-93BB-488D-8D75-4FBDB5053635}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9748127C-93BB-488D-8D75-4FBDB5053635}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6588F3A4-249A-4972-B3AE-7050C0B104C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6588F3A4-249A-4972-B3AE-7050C0B104C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6588F3A4-249A-4972-B3AE-7050C0B104C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6588F3A4-249A-4972-B3AE-7050C0B104C2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {84B1E44E-2412-424E-809C-19D841311467}
+	EndGlobalSection
+EndGlobal
