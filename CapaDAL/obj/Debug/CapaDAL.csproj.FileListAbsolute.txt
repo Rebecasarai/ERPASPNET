@@ -22,3 +22,11 @@ C:\Users\Rebeca\Desktop\OnlineERP\CapaDAL\obj\Debug\CapaDAL.csprojResolveAssembl
 C:\Users\Rebeca\Desktop\OnlineERP\CapaDAL\obj\Debug\CapaDAL.csproj.CoreCompileInputs.cache
 C:\Users\Rebeca\Desktop\OnlineERP\CapaDAL\obj\Debug\CapaDAL.dll
 C:\Users\Rebeca\Desktop\OnlineERP\CapaDAL\obj\Debug\CapaDAL.pdb
+C:\Users\ezhor\source\repos\OnlineERP-master\CapaDAL\bin\Debug\CapaDAL.dll
+C:\Users\ezhor\source\repos\OnlineERP-master\CapaDAL\bin\Debug\CapaDAL.pdb
+C:\Users\ezhor\source\repos\OnlineERP-master\CapaDAL\bin\Debug\Entities.dll
+C:\Users\ezhor\source\repos\OnlineERP-master\CapaDAL\bin\Debug\Entities.pdb
+C:\Users\ezhor\source\repos\OnlineERP-master\CapaDAL\obj\Debug\CapaDAL.csprojResolveAssemblyReference.cache
+C:\Users\ezhor\source\repos\OnlineERP-master\CapaDAL\obj\Debug\CapaDAL.csproj.CoreCompileInputs.cache
+C:\Users\ezhor\source\repos\OnlineERP-master\CapaDAL\obj\Debug\CapaDAL.dll
+C:\Users\ezhor\source\repos\OnlineERP-master\CapaDAL\obj\Debug\CapaDAL.pdb

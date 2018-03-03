@@ -16,3 +16,9 @@ C:\Users\Rebeca\Desktop\OnlineERP\Entities\obj\Debug\Entities.csprojResolveAssem
 C:\Users\Rebeca\Desktop\OnlineERP\Entities\obj\Debug\Entities.csproj.CoreCompileInputs.cache
 C:\Users\Rebeca\Desktop\OnlineERP\Entities\obj\Debug\Entities.dll
 C:\Users\Rebeca\Desktop\OnlineERP\Entities\obj\Debug\Entities.pdb
+C:\Users\ezhor\source\repos\OnlineERP-master\Entities\bin\Debug\Entities.dll
+C:\Users\ezhor\source\repos\OnlineERP-master\Entities\bin\Debug\Entities.pdb
+C:\Users\ezhor\source\repos\OnlineERP-master\Entities\obj\Debug\Entities.csprojResolveAssemblyReference.cache
+C:\Users\ezhor\source\repos\OnlineERP-master\Entities\obj\Debug\Entities.csproj.CoreCompileInputs.cache
+C:\Users\ezhor\source\repos\OnlineERP-master\Entities\obj\Debug\Entities.dll
+C:\Users\ezhor\source\repos\OnlineERP-master\Entities\obj\Debug\Entities.pdb

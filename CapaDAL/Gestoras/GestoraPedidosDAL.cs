@@ -101,7 +101,7 @@ namespace CapaDAL.Gestoras
         }
 
         /// <summary>
-        /// Actual
+        /// Actualiza un pedido
         /// </summary>
         /// <param name="id"></param>
         /// <param name="value"></param>
@@ -114,27 +114,22 @@ namespace CapaDAL.Gestoras
                 Conexion conexion = new Conexion();
                 SqlConnection conection = conexion.connection;
                 conexion.openConnection();
-                conection.Open();
 
-                SqlCommand comando = new SqlCommand("EXECUTE  BorrarLineasPedido (@ID_Pedido)", conection);
-                comando.CommandType = System.Data.CommandType.StoredProcedure;
+                SqlCommand comando = new SqlCommand("EXECUTE BorraLineasPedido @ID_Pedido", conection);
                 comando.Parameters.Add("@ID_Pedido", SqlDbType.Int).Value = value.ID;
 
-                comando.ExecuteNonQuery();
+                affectedRows += comando.ExecuteNonQuery();
 
-                comando = new SqlCommand("EXECUTE InsertarLineaPedido(@ID_Pedido,@ID_Producto,@Cantidad,@PrecioVenta)", conection);
+                comando = new SqlCommand("EXECUTE InsertarLineaPedido @ID_Pedido,@ID_Producto,@Cantidad,@PrecioVenta", conection);
                 foreach (LineaPedido lp in value.LineasPedido)
                 {
-                    comando.CommandType = System.Data.CommandType.StoredProcedure;
                     comando.Parameters.Add("@ID_Pedido", SqlDbType.Int).Value = value.ID;
                     comando.Parameters.Add("@ID_Producto", SqlDbType.Int).Value = lp.IDProducto;
                     comando.Parameters.Add("@Cantidad", SqlDbType.Int).Value = lp.Cantidad;
                     comando.Parameters.Add("@PrecioVenta", SqlDbType.Money).Value = lp.PrecioVenta;
 
-                    comando.ExecuteNonQuery();
+                    affectedRows += comando.ExecuteNonQuery();
                 }
-               // comando.Parameters.Add("ID", value.ID);          
-                affectedRows = comando.ExecuteNonQuery();
                 
                 conection.Close();
                 
@@ -175,9 +170,9 @@ namespace CapaDAL.Gestoras
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public PedidoConLineaPedidoYProductos getPedido(int id)
+        public PedidoConLineaPedido getPedido(int id)
         {
-            PedidoConLineaPedidoYProductos pedidoConLineaPedidoYProductos = null;
+            PedidoConLineaPedido pedidoConLineaPedido = null;
             SqlConnection conexion = new SqlConnection();
             Conexion miConexion = new Conexion();
             SqlCommand miComando = new SqlCommand();
@@ -201,21 +196,21 @@ namespace CapaDAL.Gestoras
                 //Si hay lineas en el lector
                 if (miLector.HasRows)
                 {
-                    pedidoConLineaPedidoYProductos = new PedidoConLineaPedidoYProductos();
+                    pedidoConLineaPedido = new PedidoConLineaPedido();
                     miLector.Read();
-                    pedidoConLineaPedidoYProductos = new PedidoConLineaPedidoYProductos();
-                    pedidoConLineaPedidoYProductos.ID = (int)miLector["ID"];
-                    pedidoConLineaPedidoYProductos.Fecha = (DateTime)miLector["Fecha"];
-                    pedidoConLineaPedidoYProductos.IDCliente = (int)miLector["ID_Cliente"];
-                    pedidoConLineaPedidoYProductos.PrecioTotal = (decimal)miLector["PrecioTotal"];
+                    pedidoConLineaPedido = new PedidoConLineaPedido();
+                    pedidoConLineaPedido.ID = (int)miLector["ID"];
+                    pedidoConLineaPedido.Fecha = (DateTime)miLector["Fecha"];
+                    pedidoConLineaPedido.IDCliente = (int)miLector["ID_Cliente"];
+                    pedidoConLineaPedido.PrecioTotal = (decimal)miLector["PrecioTotal"];
 
                     miLector.Close();
 
                     //Se insertan sus lineas de pedido
-                    pedidoConLineaPedidoYProductos.LineasPedido = getLineasPedido(id, conexion);
+                    pedidoConLineaPedido.LineasPedido = getLineasPedido(id, conexion);
 
                     //Se insertan los productos
-                    pedidoConLineaPedidoYProductos.Productos = getProductos(conexion);
+                    //pedidoConLineaPedidoYProductos.Productos = getProductos(conexion); //Ya no es necesario
                 }
                 miConexion.connection.Close();
             }
@@ -223,7 +218,7 @@ namespace CapaDAL.Gestoras
             {
                 throw e;
             }
-            return pedidoConLineaPedidoYProductos;
+            return pedidoConLineaPedido;
         }    
         /// <summary>
         /// Devuelve un listado de LineasPedido segun la id del pedido, si no hay lineas de pedido devuelve null

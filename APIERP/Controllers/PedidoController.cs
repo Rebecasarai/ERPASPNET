@@ -43,18 +43,18 @@ namespace APIERP.Controllers
         }
 
         // GET: api/Pedido/5
-        public PedidoConLineaPedidoYProductos Get(int id)
+        public PedidoConLineaPedido Get(int id)
         {
-            PedidoConLineaPedidoYProductos pedidoConLineaPedidoYProductos = new PedidoConLineaPedidoYProductos();
+            PedidoConLineaPedido pedidoConLineaPedido = new PedidoConLineaPedido();
             GestoraPedidosBL gestoraPedidosBL = new GestoraPedidosBL();
             try
             {
-                pedidoConLineaPedidoYProductos = gestoraPedidosBL.getPedidoBL(id);
+                pedidoConLineaPedido = gestoraPedidosBL.getPedidoBL(id);
             }catch(Exception e)
             {
                 throw e;
             }
-            return pedidoConLineaPedidoYProductos;
+            return pedidoConLineaPedido;
         }
 
         /*public Object Get() {
