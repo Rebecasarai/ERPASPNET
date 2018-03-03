@@ -90,10 +90,6 @@
 
     <div class="container">
        
-
-        <!-- Trigger the modal with a button -->
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Hacer Pedido</button>
-        <p id="pedidoHecho"></p>
         <!-- Modal -->
         <div class="modal fade" id="myModal" role="dialog">
             <div class="modal-dialog modal-lg">
@@ -105,6 +101,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="table-container">
+                            <h2 id="tituloModal"></h2>
                             <table id="table1">
                                 <thead id="table-head">
                                     <tr>
@@ -137,8 +134,34 @@
                 <div class="jumbotron page-header cabeceraPedidos">
                     <h1>Pedidos Realizados</h1>
                     <p>
-                        LA mejor web de ERP
+                        ERP
                     </p>
+                </div>
+
+
+
+                <!-- Trigger the modal with a button -->
+                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Hacer Pedido</button>
+                <p id="pedidoHecho"></p>
+
+
+                <div class="input-group">
+                    <div class="input-group-btn search-panel">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <span id="search_concept">Filtrar por</span> <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#ID">ID</a></li>
+                            <li><a href="#Cliente">Cliente</a></li>
+                            <li><a href="#Fecha">Fecha</a></li>
+                            <li><a href="#Importe">Importe</a></li>
+                        </ul>
+                    </div>
+                    <input type="hidden" name="search_param" value="all" id="search_param">
+                    <input type="text" class="form-control" name="x" placeholder="Buscar pedido...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                    </span>
                 </div>
                 <div id="pedidosCompleto">
 

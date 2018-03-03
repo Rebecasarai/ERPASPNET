@@ -40,6 +40,10 @@
 }
 
 
+#table1{
+    width:100%;
+}
+
 
 
 #construccion {
@@ -102,9 +106,20 @@
     }
 }
 
-.loginDiv{
+
+#cabeceraPedidos {
+    background: #e5f2f7 !important;
+}
+.btn-info {
+    background: #3299ff !important;
+}
+.loginDiv {
     margin-top: 5% !important;
     text-align: center !important;
+}
+
+#tablePedidos{
+    margin: 5% 0 px 0px 0px;
 }
 
 label {
