@@ -26,6 +26,8 @@ function mostrarLogoCompleto() {
 }
 
 function displayResult() {
+
+    document.getElementById("confirmarPedido").addEventListener("click", confirmarPedido);
     
     //document.getElementById("table1").insertRow(-1).innerHTML = '<td>Producto</td><td>Stock</td><td>Descripción</td><td>Cantidad</td><td>Precio Total</td>';
     dataTable = document.getElementById('table1');
@@ -317,4 +319,31 @@ function obtenerFechaDeHoy() {
     return today;
 }
 
+
+
+
+
+function updatePedido() {
+
+
+    document.getElementById("confirmarPedido").addEventListener("click", confirmarPedido);
+
+    var pedido = new LineaDePedido();
+
+    var json = JSON.stringify(p);
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("PUT", '../api/pedido' + '/' + this.id, true);
+    xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+    xhr.onreadystatechange = function () {
+        if (xhr.status == "204") {
+            alert("bien");
+            listarPersonas();
+        } else {
+            alert("error");
+            listarPersonas();
+        }
+    }
+    xhr.send(json);
+}
 

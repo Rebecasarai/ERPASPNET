@@ -113,6 +113,7 @@ namespace CapaDAL.Gestoras
             {
                 Conexion conexion = new Conexion();
                 SqlConnection conection = conexion.connection;
+                conexion.openConnection();
                 conection.Open();
 
                 SqlCommand comando = new SqlCommand("EXECUTE  BorrarLineasPedido (@ID_Pedido)", conection);
@@ -134,7 +135,9 @@ namespace CapaDAL.Gestoras
                 }
                // comando.Parameters.Add("ID", value.ID);          
                 affectedRows = comando.ExecuteNonQuery();
+                
                 conection.Close();
+                
             }
             catch (SqlException e)
             {
