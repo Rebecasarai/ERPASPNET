@@ -92,6 +92,7 @@ function cargarPedidos() {
 
                         mRow.setAttribute("class", "fila" + pedido.ID);
                         mRow.setAttribute("id", "fila" + pedido.ID);
+                        mRow.style.cursor = "pointer";
 
                         var botonborrar = document.createElement("button");
                         botonborrar.setAttribute('class', 'btn btnCancelar btn-default btnBorrar' + pedido.id);
@@ -106,6 +107,7 @@ function cargarPedidos() {
                         mRow.appendChild(tdFecha);
                         mRow.appendChild(tdPrecioTotal);
                         mRow.appendChild(tdBorrar);
+                        mRow.addEventListener("click", editarPedido);
 
                         tabla.appendChild(mRow);
                     }
@@ -179,10 +181,18 @@ function cancelarPedido() {
 
 
 
+function editarPedido() {
+    alert(this.id);
+
+    displayModal();
+
+}
+
+
+
+
 
 function updateData() {
-
-
     var pedido = new LineaDePedido();
 
     var json = JSON.stringify(p);

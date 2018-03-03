@@ -84,6 +84,7 @@ input[type='button'].btnDelete:hover {
 }
 
 /*Table Stling*/
+/*
 table {
   width: 100%;
   display: table;
@@ -92,7 +93,7 @@ table {
 }
 table, th, td {
   border: none;
-}
+}*/
 thead {
   border-bottom: 1px solid #d0d0d0;
 }
@@ -115,6 +116,8 @@ table input[type='button'] {
   line-height: 1;
   height: auto;
 }
+
+/*
 @media only screen and (max-width:992px) {
   .form{
     padding: 15px;
@@ -126,6 +129,7 @@ table input[type='button'] {
     width: 100%;
     max-width: 100%;
   }
+  /*
   table {
     width: 100%;
     border-collapse: collapse;
@@ -139,6 +143,7 @@ table input[type='button'] {
     display: block;
     float: left;
   }
+  
   table thead tr {
     display: block;
     padding: 0 10px 0 0;
@@ -166,4 +171,4 @@ table input[type='button'] {
     min-height: 1.25em;
     text-align: left;
   }
-}
+}*/

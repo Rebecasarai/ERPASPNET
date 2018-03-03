@@ -13,13 +13,16 @@
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
     <link href="../Styles/menu.css" rel="stylesheet" />
     <script src="../Javascript/dynamicmenu.js"></script>
-    <script src="../Javascript/ajaxCargaContenido.js"></script>
+    <!--<script src="../Javascript/ajaxCargaContenido.js"></script>-->
     <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="../Javascript/validation.js"></script>
-    <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
+    <!--
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>-->
+    
     <script src="../Scripts/jquery.min.js"></script>
     <script src="../Scripts/CustomBootstrap.js"></script>
+
     <link rel="stylesheet" href="../Scripts/bootstrap.min.css">
     <link rel="stylesheet" href="../Content/contact.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
@@ -86,14 +89,7 @@
     </nav>
 
     <div class="container">
-        <div class="jumbotron page-header cabeceraPedidos">
-            <h1>Pedidos Realizados</h1>
-            <p>
-                LA mejor web de ERP
-            </p>
-        </div>
-    </div>
-    <div class="container">
+       
 
         <!-- Trigger the modal with a button -->
         <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Hacer Pedido</button>
@@ -138,7 +134,15 @@
         <!--Parte Tabla Pedidos-->
         <div id="Pedidos" class="visible" style="color:black !important;">
             <div class="row">
-                <h2 style="text-align:center;">Pedidos</h2>
+                <div class="jumbotron page-header cabeceraPedidos">
+                    <h1>Pedidos Realizados</h1>
+                    <p>
+                        LA mejor web de ERP
+                    </p>
+                </div>
+                <div id="pedidosCompleto">
+
+                </div>
             </div>
         </div>
         <!--Parte Tabla Pedidos-->
@@ -147,6 +151,13 @@
             <img src="https://s3-us-west-2.amazonaws.com/pondrin.com/profile_pictures/1058/KAWAII%20PANDA.gif" width="450" class="gif" />
         </div>
         <div id="PedidosCancelados" class="invisible">
+            <div class="row" >
+                <h2 style="text-align:center;">Cargando</h2>
+                 
+
+            </div>
+        </div>
+        <div id="Estadistica" class="invisible">
             <div class="row">
                 <h2 style="text-align:center;">Pedidos Cancelados</h2>
             </div>
