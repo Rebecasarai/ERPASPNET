@@ -1,4 +1,4 @@
-﻿//window.addEventListener("load", );
+﻿window.addEventListener("load", iniciar );
 var fila = 1;
 var id;
 var dataTable;
@@ -14,8 +14,16 @@ var lineasDeProductos = 0;
 
 var productos = [];
 var cantidad = 0;
+var idProducto = 0;
+
+function iniciar() {
+    document.getElementById("mainmanu").addEventListener("mouseover", mostrarLogoCompleto);
+}
 
 
+function mostrarLogoCompleto() {
+
+}
 
 function displayResult() {
     
@@ -75,10 +83,11 @@ function displayResult() {
             if (arraycosas[i].Nombre === td0.firstChild.value) {
 
                 td7.setAttribute("id", arraycosas[i].ID);
-                alert("idProducto"+arraycosas[i].ID);
-                productoSeleccionado = arraycosas[i];
-                alert("Producto seleccionado: " + productoSeleccionado.Nombre);
+                td7.value = arraycosas[i].ID;
+                td7.innerHTML = arraycosas[i].ID;
+                alert("idProducto" + arraycosas[i].ID);
 
+                productoSeleccionado = arraycosas[i];
             }
         }
     
@@ -202,9 +211,9 @@ function confirmarPedido() {
 
         //if(se ve la row)
 
-
-        var idProducto = 0;
-            //loops through each cell in current row
+        var aja = 0;
+        
+        //loops through each cell in current row
         for (var j = 0; j < cellLength; j++) {
             if ($(oTable.rows.item(i)).is(':visible')) {
                 if (j == 0) {
@@ -214,36 +223,35 @@ function confirmarPedido() {
                 }
 
                 if (j == 3) {
-                    cantidad = parseFloat(oCells.item(j).firstChild.value) * 1;
-                    alert("cantidad " + cantidad);
-                    alert(oCells.item(j).firstChild.value);
+                    cantidad = parseFloat(oCells.item(j).firstChild.value);
                 }
 
                 if (j == 5) {
                     precioTotal += parseFloat(oCells.item(j).firstChild.textContent);
-                    //precioTotal += parseFloat(document.getElementsByClassName("total")[i].innerHTML);
-                    alert("precioTotal " + precioTotal);
-                    alert(oCells.item(j).firstChild.textContent);
-                    alert("desde this: " + parseFloat(oCells.item(j).firstChild.textContent));
-                    //alert(parseFloat(document.getElementsByClassName("total")[i].innerHTML));
                 }
-
-            }
-            if (j == 6) {
-                idProducto = oCells.item(j).firstChild.id;
-                alert("id del producto es: "+idProducto);
+                
+                if (j == 6) {
+                    idProducto = oCells.item(j).firstChild.id;
+                    alert("id del producto es: " + idProducto);
+                    aja = oCells.item(j).firstChild.innerHTML;
+                    alert("id del producto es inner: " + oCells.item(j).firstChild.innerHTML);
+                    alert("id del producto es value: " + oCells.item(j).firstChild.value);
+                }
+                
             }
         }
 
+        alert("id del producto es DEFI: " + idProducto);
+
         alert(pedido);
-        var linea = new LineaDePedido(idProducto, cantidad, resultado);
+        var linea = new LineaDePedido(75, cantidad, resultado);
         lineas.push(linea);
-        
+
     }
 
     var date = obtenerFechaDeHoy();
     var pedidoPost = new PedidoConLineaPedido(lineas, 1, "2018-02-13T12:53:12.433", precioTotal);
-    
+
     addPedido(pedidoPost);
 
 
@@ -254,18 +262,14 @@ function confirmarPedido() {
 function eliminarFila() {
     if (document.getElementById("table1").childElementCount - 1 <= this.name) {
         document.getElementById("table1").rows.item(parseInt(this.name)).style.display = 'none';
-    }
-
-    else
-    {
+    } else {
         document.getElementById("table1").rows.item(parseInt(this.name)).style.display = 'none';
     }
 }
 
 function borrarTabla() {
 
-    for (var i = 1; i < document.getElementById("table1").rows.length; i++)
-    {
+    for (var i = 1; i < document.getElementById("table1").rows.length; i++) {
         document.getElementById("table1").rows.item(i).style.display = 'none';
     }
 
@@ -273,7 +277,7 @@ function borrarTabla() {
 
 
 function addPedido(pedido) {
-    
+
     var url = '../api/Pedido';
 
     var json = JSON.stringify(pedido);
@@ -305,7 +309,7 @@ function obtenerFechaDeHoy() {
         mm = '0' + mm
     }
 
-    today = yyyy + '-' + mm + '-' + dd +"T12:53:12.433";
+    today = yyyy + '-' + mm + '-' + dd + "T12:53:12.433";
     //2018-02-13T12:53:12.433
     return today;
 }

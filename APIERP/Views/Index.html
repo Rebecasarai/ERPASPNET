@@ -29,12 +29,15 @@
     <script src="../Scripts/tablaGestion.js"></script>
 </head>
 <body>
-    <nav class="main-menu">
+    <nav class="main-menu" id="mainmanu">
         <!--logo-->
-        <div>
+        <div class="menuLogo">
+
+            <img src="../Assets/logoERP.png" class="img-responsive logoImg" />
         </div>
-        <div id="titulomenu">
-            <h1 id="titulomenu">ERP.ES</h1>
+        <div class="menuLogo" id="titulomenutexto">
+
+            <h1 id="titulomenu" >ERP.ES</h1>
         </div>
         <!--<div class="settings"></div>-->
         <div class="scrollbar" id="style-1">
@@ -81,7 +84,17 @@
             </ul>
         </div>
     </nav>
+
     <div class="container">
+        <div class="jumbotron">
+            <h1>Pedidos Realizados</h1>
+            <p>
+                LA mejor web de ERP
+            </p>
+        </div>
+    </div>
+    <div class="container">
+
         <!-- Trigger the modal with a button -->
         <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Hacer Pedido</button>
         <p id="pedidoHecho"></p>

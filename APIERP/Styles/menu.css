@@ -298,6 +298,39 @@ nav {
     text-shadow: 0 1px 0 #CCC, 0 2px 0 #CCC, 0 3px 0 #CCC, 0 4px 0 #CCC, 0 5px 0 #CCC, 0 6px 0 transparent, 0 7px 0 transparent, 0 8px 0 transparent, 0 9px 0 transparent, 0 10px 10px rgba(0, 0, 0, .6) !important;
     background-color: #3299FF !important;
 }
+
+
+
+#mainmanu:hover #titulomenutexto {
+    display: block !important;
+}
+
+#titulomenutexto {
+    display: none !important;
+}
+
+
+.menuLogo {
+    cursor: default !important;
+    position: relative !important;
+    /* top: 30px; */
+    /* left: 0; */
+    /* right: 0; */
+    bottom: 0 !important;
+    /* height: 100px; */
+    margin: auto;
+    display: block;
+    /* -webkit-animation: bounce .3s ease infinite alternate; */
+    font-family: 'Titan One', cursive !important;
+    font-size: 60px !important;
+    color: #FFF !important;
+    text-align: center !important;
+    line-height: 100px !important;
+    text-shadow: 0 1px 0 #CCC, 0 2px 0 #CCC, 0 3px 0 #CCC, 0 4px 0 #CCC, 0 5px 0 #CCC, 0 6px 0 transparent, 0 7px 0 transparent, 0 8px 0 transparent, 0 9px 0 transparent, 0 10px 10px rgba(0, 0, 0, .6) !important;
+    background-color: #3299FF !important;
+}
+
+
 /* ANIMATION */
 @-webkit-keyframes bounce {
     100% {
