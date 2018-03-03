@@ -81,10 +81,10 @@ namespace CapaBL.Gestoras
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public PedidoConLineaPedidoYProductos getPedidoBL(int id)
+        public PedidoConLineaPedido getPedidoBL(int id)
         {
             GestoraPedidosDAL gestoraPedidosDAL = new GestoraPedidosDAL();
-            PedidoConLineaPedidoYProductos p = new PedidoConLineaPedidoYProductos();
+            PedidoConLineaPedido p = new PedidoConLineaPedido();
             try
             {
                 p = gestoraPedidosDAL.getPedido(id);
