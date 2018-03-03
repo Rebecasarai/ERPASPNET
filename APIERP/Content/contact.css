@@ -19,6 +19,12 @@
 .form {
   padding: 20px 50px;
 }
+
+.cabeceraPedidos h1 {
+    background: none !important;
+    padding: 10px 20px;
+    color: #fff;
+}
 h1 {
   background: #006064;
   padding: 10px 20px;

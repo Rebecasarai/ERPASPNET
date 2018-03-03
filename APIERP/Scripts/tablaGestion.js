@@ -82,7 +82,10 @@ function displayResult() {
         for (var i = 0; i < arraycosas.length; i++) {
             if (arraycosas[i].Nombre === td0.firstChild.value) {
 
+                td7.className
                 td7.setAttribute("id", arraycosas[i].ID);
+
+                td7.setAttribute("class", "productoId");
                 td7.value = arraycosas[i].ID;
                 td7.innerHTML = arraycosas[i].ID;
                 alert("idProducto" + arraycosas[i].ID);
@@ -230,19 +233,21 @@ function confirmarPedido() {
                     precioTotal += parseFloat(oCells.item(j).firstChild.textContent);
                 }
                 
-                if (j == 6) {
-                    idProducto = oCells.item(j).firstChild.id;
-                    alert("id del producto es: " + idProducto);
-                    aja = oCells.item(j).firstChild.innerHTML;
-                    alert("id del producto es inner: " + oCells.item(j).firstChild.innerHTML);
-                    alert("id del producto es value: " + oCells.item(j).firstChild.value);
-                }
-                
             }
+
+            if (j == 6) {
+                alert(oCells.item(j).ID);
+                /*
+                idProducto = oCells.item(j).firstChild.innerHTML;
+                //idProducto = oCells.item(j).firstChild.id;
+
+                alert("id del producto es: " + idProducto);
+                aja = oCells.item(j).firstChild.innerHTML;
+                alert("id del producto es inner: " + oCells.item(j).firstChild.innerHTML);
+                alert("id del producto es value: " + oCells.item(j).firstChild.value);*/
+            }
+            
         }
-
-        alert("id del producto es DEFI: " + idProducto);
-
         alert(pedido);
         var linea = new LineaDePedido(75, cantidad, resultado);
         lineas.push(linea);
