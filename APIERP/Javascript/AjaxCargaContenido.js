@@ -46,9 +46,9 @@ function cargarPedidos() {
                     /*[{"ID":5,"IDCliente":1,"Fecha":"2018-02-13T12:53:12.433","PrecioTotal":1000.0000},{"ID":4,"IDCliente":1,"Fecha":"2018-02-13T12:51:27.563","PrecioTotal":1000.0000},{"ID":3,"IDCliente":1,"Fecha":"2018-02-13T12:46:48.017","PrecioTotal":500.0000},{"ID":2,"IDCliente":1,"Fecha":"2018-02-13T12:39:40.537","PrecioTotal":500.0000},{"ID":1,"IDCliente":1,"Fecha":"2018-02-13T12:19:04.793","PrecioTotal":734.0000}]*/
 
 
-                    var arrayPosts = JSON.parse(XMLHTR.responseText);
+                    var arrayPedidos = JSON.parse(XMLHTR.responseText);
                     var tabla = document.createElement("table");
-                    tabla.setAttribute("id", "table");
+                    tabla.setAttribute("id", "tablePedidos");
                     tabla.style.color = "black";
                     //tabla.className = "table table-striped table-hover";
                     // Creamos the headers of the table
@@ -61,20 +61,20 @@ function cargarPedidos() {
                     var thPrecioTotal = document.createElement("th");
                    
                     thId.innerHTML = "ID";
-                    thNombre.innerHTML = "Nombre";
+                    thNombre.innerHTML = "Cliente";
                     thFecha.innerHTML = "Fecha";
-                    thPrecioTotal.innerHTML = "PrecioTotal";
+                    thPrecioTotal.innerHTML = "Importe";
 
                     tr.appendChild(thId);
                     tr.appendChild(thNombre);
                     tr.appendChild(thFecha);
                     tr.appendChild(thPrecioTotal);
-                    tabla.className = "table table-striped table-hover";
+                    tabla.className = "table table-responsive table-striped table-hover";
                     tabla.appendChild(thead);
                     tabla.appendChild(tr);
 
 
-                    for (i = 0; i < arrayPosts.length; i++) {
+                    for (i = 0; i < arrayPedidos.length; i++) {
 
                         var mRow = document.createElement("tr");
 
@@ -84,19 +84,22 @@ function cargarPedidos() {
                         var tdPrecioTotal = document.createElement("td");
                         var tdBorrar = document.createElement("td");
 
-                        var post = arrayPosts[i];
-                        tdId.innerHTML = post.ID;
-                        tdNombre.innerHTML = post.NombreCliente;
-                        tdFecha.innerHTML = post.Fecha;
-                        tdPrecioTotal.innerHTML = post.PrecioTotal;
+                        var pedido = arrayPedidos[i];
+                        tdId.innerHTML = pedido.ID;
+                        tdNombre.innerHTML = pedido.NombreCliente;
+                        tdFecha.innerHTML = pedido.Fecha;
+                        tdPrecioTotal.innerHTML = pedido.PrecioTotal;
 
-                        mRow.setAttribute("class", "fila" + post.id);
+                        mRow.setAttribute("class", "fila" + pedido.ID);
+                        mRow.setAttribute("id", "fila" + pedido.ID);
 
                         var botonborrar = document.createElement("button");
-                        botonborrar.setAttribute('class', 'btn btnBorrar btn-default btnBorrar' + post.id);
-                        botonborrar.setAttribute('id', post.id);
+                        botonborrar.setAttribute('class', 'btn btnCancelar btn-default btnBorrar' + pedido.id);
+                        botonborrar.setAttribute('id', pedido.ID);
                         botonborrar.innerHTML = "Cancelar";
+                        botonborrar.addEventListener("click", cancelarPedido);
                         tdBorrar.appendChild(botonborrar);
+
 
                         mRow.appendChild(tdId);
                         mRow.appendChild(tdNombre);
@@ -126,7 +129,7 @@ function cargarBuscador() {
     buscador.setAttribute("id", "buscador");
     buscador.addEventListener("keyup", buscar);
 
-    document.getElementById("Pedidos").insertBefore(buscador, document.getElementById("table"));
+    document.getElementById("Pedidos").insertBefore(buscador, document.getElementById("tablePedidos"));
     //document.getElementById("PedidosCancelados").insertBefore(buscador, document.getElementById("tablePedidosCancelados"));
 
 }
@@ -140,11 +143,11 @@ function buscar() {
     var input, filter, table, tr, td, i;
     input = document.getElementById("buscador");
     filter = input.value.toUpperCase();
-    table = document.getElementById("table");
+    table = document.getElementById("tablePedidos");
     tr = table.getElementsByTagName("tr");
     for (i = 0; i < tr.length; i++) {
         //especificamos la columna a buscar
-        td = tr[i].getElementsByTagName("td")[0];
+        td = tr[i].getElementsByTagName("td")[2];
         //alert(td.innerHTML);
         if (td) {
             if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
@@ -154,5 +157,48 @@ function buscar() {
             }
         }
     }
+}
+
+
+function cancelarPedido() {
+    
+    var idPedido = this.id.split("fila");
+    alert(idPedido);
+    if (confirm('Esta seguro de cancelar ' + idPedido + "?")) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("DELETE", '..api/pedido' + '/' + idPedido, true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == "200" || xhr.readyState == 4 && xhr.status == "204") {
+            
+                cargarPedidos();
+            }
+        }
+        xhr.send();
+    }
+}
+
+
+
+
+function updateData() {
+
+
+    var pedido = new LineaDePedido();
+
+    var json = JSON.stringify(p);
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("PUT", '../api/pedido' + '/' + this.id, true);
+    xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+    xhr.onreadystatechange = function () {
+        if (xhr.status == "204") {
+            alert("bien");
+            listarPersonas();
+        } else {
+            alert("error");
+            listarPersonas();
+        }
+    }
+    xhr.send(json);
 }
 

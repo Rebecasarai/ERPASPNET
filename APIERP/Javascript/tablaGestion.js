@@ -137,9 +137,7 @@ function displayResult() {
     });
     
     //{ "ID":73, "Nombre":"Manta eléctrica", "Descripcion":"Manta eléctrica de alta calidad", "PrecioUnitario":12.5000, "Stock":-52, "Baja":true }
-    //$(".slcProductos" + fila).select2();
-
-    //arraycosas = ["volvo", "volvo"];
+   
 
 
     var option = document.createElement("option");
@@ -318,3 +316,5 @@ function obtenerFechaDeHoy() {
     //2018-02-13T12:53:12.433
     return today;
 }
+
+
