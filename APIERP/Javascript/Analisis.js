@@ -14,11 +14,11 @@ function analisisCurvas() {
         data: {
             labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
             datasets: [{
-                label: 'apples',
+                label: 'Activos',
                 data: [12, 19, 3, 17, 6, 3, 7],
                 backgroundColor: "rgba(153,255,51,0.4)"
             }, {
-                label: 'oranges',
+                label: 'Pasivos',
                 data: [2, 29, 5, 5, 2, 3, 10],
                 backgroundColor: "rgba(255,153,0,0.4)"
             }]
@@ -32,7 +32,7 @@ function coolAnalisis() {
     var myChart = new Chart(ctx, {
         type: 'polarArea',
         data: {
-            labels: ["M", "T", "W", "T", "F", "S", "S"],
+            labels: ["Productos Electricos", "Del Betis", "Organicos", "Bebidas", "Muebles Grandes", "Eletronicos", "Otros"],
             datasets: [{
                 backgroundColor: [
                     "#2ecc71",
