@@ -88,6 +88,7 @@ function cargarPedidos() {
                 var arrayPedidos = JSON.parse(XMLHTR.responseText);
                 var tabla = document.createElement("table");
                 tabla.setAttribute("id", "tablePedidos");
+                tabla.setAttribute("data-toggle", "table");
                 tabla.style.margin = " 40px 0px 0px 0px ";
                 tabla.style.color = "black";
                 //tabla.className = "table table-striped table-hover";
@@ -99,11 +100,13 @@ function cargarPedidos() {
                 var thNombre = document.createElement("th");
                 var thFecha = document.createElement("th");
                 var thPrecioTotal = document.createElement("th");
+                var thCancelar = document.createElement("th");
 
                 thId.innerHTML = "ID";
                 thNombre.innerHTML = "Cliente";
                 thFecha.innerHTML = "Fecha";
                 thPrecioTotal.innerHTML = "Importe";
+                thCancelar.innerHTML = "Cancelar";
 
 
                 thId.setAttribute("id", "idCabecera");
@@ -111,12 +114,20 @@ function cargarPedidos() {
                 thFecha.setAttribute("id", "fechaCabecera");
                 thPrecioTotal.setAttribute("id", "precioCabecera");
 
+
+                thId.setAttribute("data-sortable", "true");
+                thNombre.setAttribute("data-sortable", "true");
+                thFecha.setAttribute("data-sortable", "true");
+                thPrecioTotal.setAttribute("data-sortable", "true");
+                thPrecioTotal.setAttribute("data-sorter", "priceSorter");
+                thCancelar.style.textAlign = "center";
+
                 tr.appendChild(thId);
                 tr.appendChild(thNombre);
                 tr.appendChild(thFecha);
                 tr.appendChild(thPrecioTotal);
-
-
+                tr.appendChild(thCancelar);
+                
 
                 tabla.className = "table table-responsive table-striped table-hover";
                 tabla.appendChild(thead);
@@ -144,6 +155,7 @@ function cargarPedidos() {
                     tdFecha.setAttribute("data-target", "#myModal");
                     tdPrecioTotal.setAttribute("data-toggle", "modal");
                     tdPrecioTotal.setAttribute("data-target", "#myModal");
+                    tdBorrar.style.textAlign = "center";
                     
                     tdId.addEventListener("click", editarPedido);
                     tdNombre.addEventListener("click", editarPedido);
@@ -164,7 +176,7 @@ function cargarPedidos() {
                     var botonborrar = document.createElement("button");
                     botonborrar.setAttribute('class', 'btn btnCancelar btn-default btnBorrar' + pedido.id);
                     botonborrar.setAttribute('id', pedido.ID);
-                    botonborrar.innerHTML = "Cancelar";
+                    botonborrar.innerHTML = '<span class="glyphicon glyphicon-remove"></span>';
                     botonborrar.addEventListener("click", cancelarPedido);
                     tdBorrar.appendChild(botonborrar);
 
@@ -364,18 +376,10 @@ function cancelarPedido() {
     }
 }
 
-/*
-
-<table id="myTable2">
-    <tr>
-        <!--When a header is clicked, run the sortTable function, with a parameter,
-0 for sorting by names, 1 for sorting by country: -->
-<th onclick="sortTable(0)">Name</th>
-        <th onclick="sortTable(1)">Country</th>
-    </tr>
-    ...
-
-<script>*/
+/**
+ * Ordena por orden alfabetico
+ * @param {any} n
+ */
 function sortTable(n) {
   var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
   table = document.getElementById("tablePedidos");
@@ -429,4 +433,26 @@ function sortTable(n) {
       }
     }
   }
+}
+
+
+function monthSorter(a, b) {
+    if (a.month < b.month) return -1;
+    if (a.month > b.month) return 1;
+    return 0;
+}
+
+
+function integerSorter(a, b) {
+    if (a < b) return -1;
+    if (a > b) return 1;
+    return 0;
+}
+
+function priceSorter(a, b) {
+    a = +a.substring(1); // remove $
+    b = +b.substring(1);
+    if (a > b) return 1;
+    if (a < b) return -1;
+    return 0;
 }

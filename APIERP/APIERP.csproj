@@ -87,6 +87,7 @@
     <Content Include="Content\contact.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
+    <Content Include="Javascript\Analisis.js" />
     <Content Include="Javascript\TablaPedidos.js" />
     <Content Include="Javascript\dynamicmenu.js" />
     <Content Include="Javascript\EditarPedido.js" />
