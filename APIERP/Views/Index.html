@@ -19,9 +19,11 @@
     <script src="../Javascript/validation.js"></script>
     <!--
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>-->
-    
+
     <script src="../Scripts/jquery.min.js"></script>
     <script src="../Scripts/CustomBootstrap.js"></script>
+
+
 
     <link rel="stylesheet" href="../Scripts/bootstrap.min.css">
     <link rel="stylesheet" href="../Content/contact.css">
@@ -30,6 +32,7 @@
     <script src="../Javascript/LineaDePedido.js"></script>
     <script src="../Javascript/PedidoConLineaPedido.js"></script>
     <script src="../Javascript/tablaGestion.js"></script>
+    <script src="../Javascript/TablaPedidos.js"></script>
 </head>
 <body>
     <nav class="main-menu" id="mainmanu">
@@ -137,8 +140,7 @@
                         ERP
                     </p>
                 </div>
-
-
+                
 
                 <!-- Trigger the modal with a button -->
                 <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Hacer Pedido</button>
@@ -157,8 +159,8 @@
                             <li><a href="#Importe">Importe</a></li>
                         </ul>
                     </div>
-                    <input type="hidden" name="search_param" value="all" id="search_param">
-                    <input type="text" id="inputBuscar" onkeyup="buscar()" class="form-control" name="x" placeholder="Buscar pedido...">
+                    <input type="hidden" name="search_param" value="all" id="search_param" onchange="cargarBuscador()">
+                    <input type="text" id="inputBuscar" onkeyup="cargarBuscador()" class="form-control" name="x" placeholder="Buscar pedido...">
                     <span class="input-group-btn">
                         <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
                     </span>
