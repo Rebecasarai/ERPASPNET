@@ -186,28 +186,8 @@ function cargarBuscador() {
     buscador.addEventListener("keyup", buscar);*/
 
     
-
-    
-    document.getElementById("buscador").addEventListener("keyup", buscar);
-    /*
-    $(document).ready(function (e) {
-        e.preventDefault();
-        $('.search-panel .dropdown-menu').find('a').click(function (e) {
-            e.preventDefault();
-            var param = $(this).attr("href").replace("#", "");
-            var concept = $(this).text();
-            $('.search-panel span#search_concept').text(concept);
-            $('.input-group #search_param').val(param);
-
-            e.preventDefault();
-        });
-
-        e.preventDefault();
-    });*/
-
-   // document.getElementById("pedidosCompleto").insertBefore(buscador, document.getElementById("tablePedidos"));
-    //document.getElementById("PedidosCancelados").insertBefore(buscador, document.getElementById("tablePedidosCancelados"));
-
+    document.getElementById("inputBuscar").addEventListener("keyup", buscar);
+   
 }
 
 
@@ -217,7 +197,7 @@ function cargarBuscador() {
  */
 function buscar() {
     var input, filter, table, tr, td, i;
-    input = document.getElementById("buscador");
+    input = document.getElementById("inputBuscar");
     filter = input.value.toUpperCase();
     table = document.getElementById("tablePedidos");
     tr = table.getElementsByTagName("tr");
