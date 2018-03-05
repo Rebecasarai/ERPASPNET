@@ -1,27 +1,22 @@
-﻿window.addEventListener("load", iniciar);
-var fila = 1;
-var id;
-var dataTable;
-var tbody;
-var tableHead;
-var filasBorradas = 0;
-var arraycosas = [];
+﻿
 var pedido;
 var resultado = 0;
-
-var precioTotal = 0;
-var lineasDeProductos = 0;
-
-var productos = [];
-var cantidad = 0;
-var idProducto = 0;
-
-
 var arrayProductos = [];
 
 
 
-function iniciar() {
+//Carga el index con ajax
+$(document).ready(cargar);
+
+
+
+function cargar() {
+    $.ajax({
+        url: "../Views/Pedidos.html", success: function (result) {
+            $("#contenido").html(result);
+        }
+    });
+    escucharMenu();
     nuevoListar();
 }
 
@@ -31,7 +26,7 @@ function iniciar() {
  */
 function nuevoListar() {
 
-    $(document).ready(function () {
+    //$(document).ready(function () {
         var $pagination = $('#pagination'),
             totalRecords = 0,
             records = [],
@@ -46,7 +41,6 @@ function nuevoListar() {
             dataType: 'json',
             success: function (data) {
                 records = data;
-                console.log(records);
                 totalRecords = records.length;
                 totalPages = Math.ceil(totalRecords / recPerPage);
                 apply_pagination();
@@ -61,7 +55,7 @@ function nuevoListar() {
                 tr.append('<td  class="tdnombre" data-toggle="modal" data-target="#modalEditar" >' + displayRecords[i].NombreCliente + "</td>");
                 tr.append('<td  class="tdfecha"  data-toggle="modal" data-target="#modalEditar" >' + displayRecords[i].Fecha + "</td>");
                 tr.append('<td  class="tdprecio" data-toggle="modal" data-target="#modalEditar" >' + displayRecords[i].PrecioTotal + "</td>");
-                tr.append('<td style="text-align: center;"><button class="btn btnBorrar btn-default btnBorrar' + displayRecords[i].ID+' id="' + displayRecords[i].ID + '"><span class="glyphicon glyphicon-remove"></span></button></td>');
+                tr.append('<td style="text-align: center;"><button class="btn btnBorrar btn-default btnBorrar' + displayRecords[i].ID+'" id="' + displayRecords[i].ID + '"><span class="glyphicon glyphicon-remove"></span></button></td>');
                 tr.attr('id', 'fila' + displayRecords[i].ID);
 
                 $('#emp_body').append(tr);
@@ -88,13 +82,12 @@ function nuevoListar() {
                 onPageClick: function (event, page) {
                     displayRecordsIndex = Math.max(page - 1, 0) * recPerPage;
                     endRec = (displayRecordsIndex) + recPerPage;
-                    console.log(displayRecordsIndex + 'ssssssssss' + endRec);
                     displayRecords = records.slice(displayRecordsIndex, endRec);
                     generate_table();
                 }
             });
         }
-    });
+   // });
 }
 
 
@@ -106,43 +99,42 @@ function nuevoListar() {
  */
 function editarPedido() {
 
+    var idPedido = this.parentNode.id.split('fila')[1];
+    
     getProductos();
 
     $.ajax({
-        url: "../api/pedido/40",
+        url: "../api/pedido/" + idPedido,
         dataType: 'json',
         success: function (data) {
             var lineas = [];
             lineas = data.LineasPedido;
             $('#tbodyvacio').html('');
-            $('#tituloModalEditar').html("Pedido ' + data.ID + ' realizado en fecha ' + data.Fecha);
+            $('#tituloModalEditar').html('Pedido ' + data.ID + ' realizado en fecha ' + data.Fecha);
             $('#botonEditarCancelar').click(cancelarPedidoParametro(data.ID));
-            botonEditarCancelar
             for (var i = 0; i < lineas.length; i++) {
-                tr = $('<tr/>');
-                tr.append('<td class="tdid">' + data.ID + "</td>");
-                tr.append('<td class="tdStock">' + 30 + "</td>");
-                tr.append('<td class="tdFecha">' + "descripcion" + "</td>");
-                tr.append('<td class="tdCantidad">' + lineas[i].Cantidad + "</td>");
-                tr.append('<td class="tdPrecioUnitario">' + lineas[i].PrecioVenta + "</td>");
-                tr.append('<td class="tdPrecioTotal">' + data.PrecioTotal + "</td>");
-                $('#tbodyvacio').append(tr);
-                
-                
                 for (var j = 0; j < arrayProductos.length; j++) {
                     if (lineas[i].IDProducto == arrayProductos[j].ID) {
-                        alert("es el mismo producto");
+                        tr = $('<tr/>');
+                        tr.append('<td class="tdid">' + data.ID + "</td>");
+                        tr.append('<td class="tdStock">' + arrayProductos[j].Stock + "</td>");
+                        tr.append('<td class="tdFecha">' + arrayProductos[j].Descripcion + "</td>");
+                        tr.append('<td class="tdCantidad">' + lineas[i].Cantidad + "</td>");
+                        tr.append('<td class="tdPrecioUnitario">' + lineas[i].PrecioVenta + "</td>");
+                        tr.append('<td class="tdPrecioTotal">' + data.PrecioTotal + "</td>");
+                        $('#tbodyvacio').append(tr);
+                
                     }
                 }
 
             }
+            
 
         },
         error: function (e) {
             console.log(e.message);
         }
     });
-
 
 }
 
@@ -153,13 +145,11 @@ function editarPedido() {
  */
 function getProductos() {
     $.ajax({
-        url: "../api/pedido",
+        url: "../api/productos",
         dataType: 'json',
         success: function (data) {
-            alert(data);
             arrayProductos = data;
             
-
         },
         error: function (e) {
             //called when there is an error
@@ -181,19 +171,9 @@ $(document).ready(function (e) {
     });
 });
 
-//Carga el index con ajax
-$(document).ready(cargar);
-
-function cargar() {
-    $.ajax({
-        url: "../Views/Pedidos.html", success: function (result) {
-            $("#contenido").html(result);
-        }
-    });
-    escucharMenu();
-}
-
-//
+/**
+ * Metodo con el que navegacmos entre los contenidos de la vista
+ */
 function escucharMenu() {
     $("#menu li").on('click', function () {
         var direccion = $(this).find('a').attr('href');
@@ -208,13 +188,6 @@ function escucharMenu() {
         e.preventDefault();
     });
 }
-
-function paginacion() {
-    var pagina = document.getElementsByClassName('mypaginacion')[0].getElementsByClassName('active')[0];
-   alert(pagina);
-}
-
-    
 
 
 function cargarBuscador() {
@@ -298,7 +271,6 @@ function buscarPorFecha(numero) {
     for (i = 0; i < tr.length; i++) {
         //especificamos la columna a buscar
         td = tr[i].getElementsByTagName("td")[2];
-        //alert(td.innerHTML);
         if (td) {
             if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
                 tr[i].style.display = "";
@@ -327,7 +299,6 @@ function buscarPorCliente(numero) {
     for (i = 0; i < tr.length; i++) {
         //especificamos la columna a buscar
         td = tr[i].getElementsByTagName("td")[1];
-        //alert(td.innerHTML);
         if (td) {
             if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
                 tr[i].style.display = "";
@@ -356,7 +327,6 @@ function buscarPorID(numero) {
     for (i = 0; i < tr.length; i++) {
         //especificamos la columna a buscar
         td = tr[i].getElementsByTagName("td")[0];
-        //alert(td.innerHTML);
         if (td) {
             if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
                 tr[i].style.display = "";
@@ -377,9 +347,9 @@ function cancelarPedido() {
         xhr.open("DELETE", '../api/pedido' + '/' + idPedido, true);
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4 && xhr.status == "204") {
-
-                cargarPedidos();
+                
                 nuevoListar();
+                location.reload();
             }
         }
         xhr.send();
@@ -394,8 +364,7 @@ function cancelarPedidoParametro(idPedido) {
         xhr.open("DELETE", '../api/pedido' + '/' + idPedido, true);
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4 && xhr.status == "204") {
-
-                cargarPedidos();
+                
                 nuevoListar();
             }
         }

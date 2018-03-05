@@ -1,13 +1,9 @@
-﻿window.addEventListener("load", iniciar);
+﻿
 var fila = 1;
 var id;
-var idEditar;
 var dataTable;
-var tbodyEditar;
 var tableHead;
-var filasBorradas = 0;
 var arraycosas = [];
-var arrayProductos = [];
 var pedido;
 var resultado = 0;
 
@@ -18,16 +14,6 @@ var productos = [];
 var cantidad = 0;
 var idProducto = 0;
 
-idProductoParaPEdido = 0;
-
-
-
-function iniciar() {
-}
-
-/**
- * Modal
- */
 
 
 
@@ -49,10 +35,6 @@ function updateData() {
     }
     xhr.send(json);
 }
-
-
-
-
 
 
 
@@ -212,26 +194,15 @@ function displayResult() {
 function confirmarPedido() {
 
     var pedido = "";
-    //gets table
     var oTable = document.getElementById('table1');
-
-    //gets rows of table
     var rowLength = oTable.rows.length;
 
     var lineas = [];
-
-    //loops through rows    
     for (i = 1; i < rowLength; i++) {
-
-        //gets cells of current row  
         var oCells = oTable.rows.item(i).cells;
-
-        //gets amount of cells of current row
         var cellLength = oCells.length;
         lineasDeProductos = cellLength;
         
-
-        //loops through each cell in current row
         for (var j = 0; j < cellLength; j++) {
             if ($(oTable.rows.item(i)).is(':visible')) {
                 if (j == 0) {
@@ -251,9 +222,8 @@ function confirmarPedido() {
             }
         }
 
-        var idProductoAver = document.getElementsByClassName("productoId")[0].id;
-
-        var linea = new LineaDePedido(idProductoAver, cantidad, resultado);
+        var idProductoLinea = document.getElementsByClassName("productoId")[0].id;
+        var linea = new LineaDePedido(idProductoLinea, cantidad, resultado);
         lineas.push(linea);
 
     }
@@ -261,12 +231,16 @@ function confirmarPedido() {
     var date = obtenerFechaDeHoy();
     var pedidoPost = new PedidoConLineaPedido(lineas, 1, date, precioTotal);
 
-
     addPedido(pedidoPost);
     document.getElementById("pedidoHecho").innerHTML = pedido;
     borrarTabla();
 }
 
+
+
+/**
+ * Metodo para eliminar fila
+ */
 function eliminarFila() {
     if (document.getElementById("table1").childElementCount - 1 <= this.name) {
         document.getElementById("table1").rows.item(parseInt(this.name)).style.display = 'none';
@@ -275,6 +249,9 @@ function eliminarFila() {
     }
 }
 
+/**
+ * Metodo que borra todo en una tabla
+ */
 function borrarTabla() {
 
     for (var i = 1; i < document.getElementById("table1").rows.length; i++) {
