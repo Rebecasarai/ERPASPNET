@@ -16,6 +16,8 @@ var productos = [];
 var cantidad = 0;
 var idProducto = 0;
 
+idProductoParaPEdido = 0;
+
 
 
 function iniciar() {
@@ -138,7 +140,9 @@ function editarPedido() {
                 td7.setAttribute("class", "productoId");
                 td7.value = arraycosas[i].ID;
                 td7.innerHTML = arraycosas[i].ID;
-                alert("idProducto" + arraycosas[i].ID);
+                alert("idProducto desde el change: " + arraycosas[i].ID);
+
+                idProductoParaPEdido = arraycosas[i].ID;
 
                 productoSeleccionado = arraycosas[i];
             }
@@ -363,6 +367,7 @@ function displayResult() {
         btnDelete = document.createElement('input');
 
 
+    td4.contentEditable = "true";
     td7.style.display = "none";
     td5.setAttribute('class', "total");
     btnDelete.setAttribute('type', 'button');
@@ -404,6 +409,8 @@ function displayResult() {
                 td7.innerHTML = arraycosas[i].ID;
                 alert("idProducto" + arraycosas[i].ID);
 
+
+
                 productoSeleccionado = arraycosas[i];
             }
         }
@@ -414,6 +421,7 @@ function displayResult() {
             td3.innerHTML = "";
             td4.innerHTML = "";
             td5.innerHTML = "";
+
         } else {
             var x = document.createElement("INPUT");
             x.setAttribute("type", "number");
@@ -425,6 +433,13 @@ function displayResult() {
             x.min = "1";
             x.value = "1";
             x.max = "123";
+            
+
+            var precioInput = document.createElement("INPUT");
+            precioInput.setAttribute("type", "number");
+            precioInput.setAttribute("id", "precioinput");
+            precioInput.min = "1";
+            precioInput.max = "123";
 
             
 
@@ -496,9 +511,7 @@ function displayResult() {
 }
 
 function confirmarPedido() {
-
-
-    alert("pedido");
+    
 
     
     var pedido = "";
@@ -507,8 +520,6 @@ function confirmarPedido() {
 
     //gets rows of table
     var rowLength = oTable.rows.length;
-    alert("Lineas de pedido: " + rowLength);
-
 
     var lineas = [];
 
@@ -548,7 +559,6 @@ function confirmarPedido() {
             }
 
             if (j == 6) {
-                alert(oCells.item(j).ID);
                 /*
                 idProducto = oCells.item(j).firstChild.innerHTML;
                 //idProducto = oCells.item(j).firstChild.id;
@@ -560,14 +570,18 @@ function confirmarPedido() {
             }
             
         }
-        alert(pedido);
-        var linea = new LineaDePedido(77, cantidad, resultado);
+
+        var idProductoAver = document.getElementsByClassName("productoId")[0].id;
+
+        alert("idProducto "+ idProductoAver);
+        var linea = new LineaDePedido(idProductoAver, cantidad, resultado);
         lineas.push(linea);
 
     }
 
     var date = obtenerFechaDeHoy();
     var pedidoPost = new PedidoConLineaPedido(lineas, 1, date, precioTotal);
+    
 
     addPedido(pedidoPost);
 
@@ -598,6 +612,7 @@ function addPedido(pedido) {
     var url = '../api/Pedido';
 
     var json = JSON.stringify(pedido);
+    alert(json);
 
     var xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
