@@ -44,11 +44,7 @@ function updateData() {
     xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
     xhr.onreadystatechange = function () {
         if (xhr.status == "204") {
-            alert("bien");
-            listarPersonas();
         } else {
-            alert("error");
-            listarPersonas();
         }
     }
     xhr.send(json);
@@ -60,29 +56,9 @@ function updateData() {
 
 
 
-function updatePedido() {
-
-    var pedido = new LineaDePedido();
-
-    var json = JSON.stringify(p);
-
-    var xhr = new XMLHttpRequest();
-    xhr.open("PUT", '../api/pedido' + '/' + this.id, true);
-    xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-    xhr.onreadystatechange = function () {
-        if (xhr.status == "204") {
-            alert("bien");
-            listarPersonas();
-        } else {
-            alert("error");
-            listarPersonas();
-        }
-    }
-    xhr.send(json);
-}
-
-
-
+/**
+ * Muestra los datos de productos dispinles en el modal para añadir productos
+ */
 function displayResult() {
 
     document.getElementById("confirmarPedido").addEventListener("click", confirmarPedido);
@@ -229,6 +205,10 @@ function displayResult() {
     fila++;
 }
 
+
+/**
+ * Metodo que confirma un nuevo pedido
+ */
 function confirmarPedido() {
 
     var pedido = "";
@@ -303,7 +283,10 @@ function borrarTabla() {
 
 }
 
-
+/**
+ * MEtodo que añade el nuevo pedido
+ * @param {any} pedido
+ */
 function addPedido(pedido) {
 
     var url = '../api/Pedido';
@@ -322,6 +305,9 @@ function addPedido(pedido) {
     xhr.send(json);
 }
 
+/**
+ * Obtiene la fecha de hoy
+ */
 function obtenerFechaDeHoy() {
     var today = new Date();
     var dd = today.getDate();

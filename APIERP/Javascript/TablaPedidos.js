@@ -61,8 +61,7 @@ function nuevoListar() {
                 tr.append('<td  class="tdnombre" data-toggle="modal" data-target="#modalEditar" >' + displayRecords[i].NombreCliente + "</td>");
                 tr.append('<td  class="tdfecha"  data-toggle="modal" data-target="#modalEditar" >' + displayRecords[i].Fecha + "</td>");
                 tr.append('<td  class="tdprecio" data-toggle="modal" data-target="#modalEditar" >' + displayRecords[i].PrecioTotal + "</td>");
-                // tr.append('<td style="text- align: center;"><button id="' + displayRecords[i].ID + '" class="btn btnCancelar btn-default btnBorrar btnBorrar' + displayRecords[i].ID + '><span class="glyphicon glyphicon-remove"></span></button></td>');
-                tr.append('<td style="text-align: center;"><button class="btn btnCancelar btn-default btnBorrar"' + displayRecords[i].ID+' id="' + displayRecords[i].ID + '"><span class="glyphicon glyphicon-remove"></span></button></td>');
+                tr.append('<td style="text-align: center;"><button class="btn btnBorrar btn-default btnBorrar' + displayRecords[i].ID+' id="' + displayRecords[i].ID + '"><span class="glyphicon glyphicon-remove"></span></button></td>');
                 tr.attr('id', 'fila' + displayRecords[i].ID);
 
                 $('#emp_body').append(tr);
@@ -82,6 +81,10 @@ function nuevoListar() {
             $pagination.twbsPagination({
                 totalPages: totalPages,
                 visiblePages: 6,
+                next: 'Siguiente',
+                prev: 'Anterior',
+                first: 'Primera',
+                last: 'Última',
                 onPageClick: function (event, page) {
                     displayRecordsIndex = Math.max(page - 1, 0) * recPerPage;
                     endRec = (displayRecordsIndex) + recPerPage;
@@ -99,7 +102,7 @@ function nuevoListar() {
 
 
 /**
- * 
+ * Metodo que rellena el modal para editar un pedido y ver sus datos
  */
 function editarPedido() {
 
@@ -109,11 +112,10 @@ function editarPedido() {
         url: "../api/pedido/40",
         dataType: 'json',
         success: function (data) {
-            alert(JSON.stringify(data.LineasPedido));
             var lineas = [];
             lineas = data.LineasPedido;
             $('#tbodyvacio').html('');
-            $('#tituloModalEditar').html('Editar pedido ' + data.ID + 'con fecha ' + data.Fecha);
+            $('#tituloModalEditar').html("Pedido ' + data.ID + ' realizado en fecha ' + data.Fecha);
             $('#botonEditarCancelar').click(cancelarPedidoParametro(data.ID));
             botonEditarCancelar
             for (var i = 0; i < lineas.length; i++) {
@@ -126,9 +128,10 @@ function editarPedido() {
                 tr.append('<td class="tdPrecioTotal">' + data.PrecioTotal + "</td>");
                 $('#tbodyvacio').append(tr);
                 
+                
                 for (var j = 0; j < arrayProductos.length; j++) {
-                    if (lineaPedido.IDProducto == arrayProductos[j].ID) {
-                        alert("SIIIII");
+                    if (lineas[i].IDProducto == arrayProductos[j].ID) {
+                        alert("es el mismo producto");
                     }
                 }
 
@@ -136,7 +139,6 @@ function editarPedido() {
 
         },
         error: function (e) {
-            //called when there is an error
             console.log(e.message);
         }
     });
@@ -146,7 +148,9 @@ function editarPedido() {
 
 
 
-
+/**
+ * Obtiene todos los productos y coloca en array
+ */
 function getProductos() {
     $.ajax({
         url: "../api/pedido",
@@ -165,6 +169,7 @@ function getProductos() {
 }
 
 
+//Busqueda
 $(document).ready(function (e) {
     $('.search-panel .dropdown-menu').find('a').click(function (e) {
         e.preventDefault();
@@ -180,7 +185,6 @@ $(document).ready(function (e) {
 $(document).ready(cargar);
 
 function cargar() {
-    //scargarPedidos(50);
     $.ajax({
         url: "../Views/Pedidos.html", success: function (result) {
             $("#contenido").html(result);
@@ -204,139 +208,6 @@ function escucharMenu() {
         e.preventDefault();
     });
 }
-/*
-function cargarPedidos(numero) {
-    var XMLHTR = new XMLHttpRequest();
-    if (XMLHTR) {
-        XMLHTR.open('GET', '../api/pedido?nElementosPagina=' + numero);
-        XMLHTR.onreadystatechange = function () {
-
-            var root = document.getElementById("pedidosCompleto");
-            root.innerHTML = "cargando";
-
-            if (XMLHTR.readyState === 4 && XMLHTR.status === 200) {
-
-                root.innerHTML = "";
-                
-                var arrayPedidos = JSON.parse(XMLHTR.responseText);
-                var tabla = document.createElement("table");
-                tabla.setAttribute("id", "tablePedidos");
-                tabla.setAttribute("data-toggle", "table");
-                tabla.style.margin = " 40px 0px 0px 0px ";
-                tabla.style.color = "black";
-                //tabla.className = "table table-striped table-hover";
-                // Creamos the headers of the table
-                var thead = document.createElement("thead");
-                var tr = document.createElement("tr");
-                var hr = document.createElement("hr");
-                var thId = document.createElement("th");
-                var thNombre = document.createElement("th");
-                var thFecha = document.createElement("th");
-                var thPrecioTotal = document.createElement("th");
-                var thCancelar = document.createElement("th");
-
-                thId.innerHTML = "ID";
-                thNombre.innerHTML = "Cliente";
-                thFecha.innerHTML = "Fecha";
-                thPrecioTotal.innerHTML = "Importe";
-                thCancelar.innerHTML = "Cancelar";
-
-
-                thId.setAttribute("id", "idCabecera");
-                thNombre.setAttribute("id", "nombreCabecera");
-                thFecha.setAttribute("id", "fechaCabecera");
-                thPrecioTotal.setAttribute("id", "precioCabecera");
-
-
-                thId.setAttribute("data-sortable", "true");
-                thNombre.setAttribute("data-sortable", "true");
-                thFecha.setAttribute("data-sortable", "true");
-                thPrecioTotal.setAttribute("data-sortable", "true");
-                thPrecioTotal.setAttribute("data-sorter", "priceSorter");
-                thCancelar.style.textAlign = "center";
-
-                tr.appendChild(thId);
-                tr.appendChild(thNombre);
-                tr.appendChild(thFecha);
-                tr.appendChild(thPrecioTotal);
-                tr.appendChild(thCancelar);
-                
-
-                tabla.className = "table table-responsive table-striped table-hover";
-                tabla.appendChild(thead);
-                tabla.appendChild(tr);
-
-                for (i = 0; i < arrayPedidos.length; i++) {
-
-                    var mRow = document.createElement("tr");
-
-                    if (i % 2 == 0) {
-                        mRow.style.background = "#e5f2f7";
-                    }
-
-                    var tdId = document.createElement("td");
-                    var tdNombre = document.createElement("td");
-                    var tdFecha = document.createElement("td");
-                    var tdPrecioTotal = document.createElement("td");
-                    var tdBorrar = document.createElement("td");
-
-                    tdId.setAttribute("data-toggle", "modal");
-                    tdId.setAttribute("data-target", "#myModal");
-                    tdNombre.setAttribute("data-toggle", "modal");
-                    tdNombre.setAttribute("data-target", "#myModal");
-                    tdFecha.setAttribute("data-toggle", "modal");
-                    tdFecha.setAttribute("data-target", "#myModal");
-                    tdPrecioTotal.setAttribute("data-toggle", "modal");
-                    tdPrecioTotal.setAttribute("data-target", "#myModal");
-                    tdBorrar.style.textAlign = "center";
-                    
-                    tdId.addEventListener("click", editarPedido);
-                    tdNombre.addEventListener("click", editarPedido);
-                    tdFecha.addEventListener("click", editarPedido);
-                    tdPrecioTotal.addEventListener("click", editarPedido);
-
-
-                    var pedido = arrayPedidos[i];
-                    tdId.innerHTML = pedido.ID;
-                    tdNombre.innerHTML = pedido.NombreCliente;
-                    tdFecha.innerHTML = pedido.Fecha;
-                    tdPrecioTotal.innerHTML = pedido.PrecioTotal;
-
-                    mRow.setAttribute("class", "fila" + pedido.ID);
-                    mRow.setAttribute("id", "" + pedido.ID);
-                    mRow.style.cursor = "pointer";
-
-                    var botonborrar = document.createElement("button");
-                    botonborrar.setAttribute('class', 'btn btnCancelar btn-default btnBorrar' + pedido.id);
-                    botonborrar.setAttribute('id', pedido.ID);
-                    botonborrar.innerHTML = '<span class="glyphicon glyphicon-remove"></span>';
-                    botonborrar.addEventListener("click", cancelarPedido);
-                    tdBorrar.appendChild(botonborrar);
-
-
-                    mRow.appendChild(tdId);
-                    mRow.appendChild(tdNombre);
-                    mRow.appendChild(tdFecha);
-                    mRow.appendChild(tdPrecioTotal);
-                    mRow.appendChild(tdBorrar);
-
-
-                    tabla.appendChild(mRow);
-                }
-
-                
-                root.appendChild(tabla);
-
-                cargarBuscador();
-            }
-        }
-        XMLHTR.send();
-        
-    }
-
-}
-
-*/
 
 function paginacion() {
     var pagina = document.getElementsByClassName('mypaginacion')[0].getElementsByClassName('active')[0];
