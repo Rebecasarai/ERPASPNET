@@ -38,3 +38,13 @@ C:\Users\ezhor\source\repos\OnlineERP-master\CapaBL\obj\Debug\CapaBL.csprojResol
 C:\Users\ezhor\source\repos\OnlineERP-master\CapaBL\obj\Debug\CapaBL.csproj.CoreCompileInputs.cache
 C:\Users\ezhor\source\repos\OnlineERP-master\CapaBL\obj\Debug\CapaBL.dll
 C:\Users\ezhor\source\repos\OnlineERP-master\CapaBL\obj\Debug\CapaBL.pdb
+C:\Users\rsgonzalez\Desktop\OnlineERP\CapaBL\bin\Debug\CapaBL.dll
+C:\Users\rsgonzalez\Desktop\OnlineERP\CapaBL\bin\Debug\CapaBL.pdb
+C:\Users\rsgonzalez\Desktop\OnlineERP\CapaBL\bin\Debug\CapaDAL.dll
+C:\Users\rsgonzalez\Desktop\OnlineERP\CapaBL\bin\Debug\Entities.dll
+C:\Users\rsgonzalez\Desktop\OnlineERP\CapaBL\bin\Debug\CapaDAL.pdb
+C:\Users\rsgonzalez\Desktop\OnlineERP\CapaBL\bin\Debug\Entities.pdb
+C:\Users\rsgonzalez\Desktop\OnlineERP\CapaBL\obj\Debug\CapaBL.csprojResolveAssemblyReference.cache
+C:\Users\rsgonzalez\Desktop\OnlineERP\CapaBL\obj\Debug\CapaBL.csproj.CoreCompileInputs.cache
+C:\Users\rsgonzalez\Desktop\OnlineERP\CapaBL\obj\Debug\CapaBL.dll
+C:\Users\rsgonzalez\Desktop\OnlineERP\CapaBL\obj\Debug\CapaBL.pdb

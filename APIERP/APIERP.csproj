@@ -90,7 +90,6 @@
     <Content Include="Javascript\Analisis.js" />
     <Content Include="Javascript\TablaPedidos.js" />
     <Content Include="Javascript\dynamicmenu.js" />
-    <Content Include="Javascript\EditarPedido.js" />
     <Content Include="Javascript\LineaDePedido.js" />
     <Content Include="Javascript\Pedido.js" />
     <Content Include="Javascript\PedidoConLineaPedido.js" />

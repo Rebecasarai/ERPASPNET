@@ -126,8 +126,22 @@
 
 
 #cabeceraPedidos {
-    background: #f0f2f3 !important;
+    /*background: #f0f2f3 !important;*/
+    background: url(https://smartosystems.in/wp-content/uploads/2016/04/light-background.jpg) !important;
+    background-repeat: no-repeat !important;
+    background-attachment: fixed !important;
+    background-position: center !important;
 }
+
+
+.cabeceraPedidos {
+    /*background: #f0f2f3 !important;*/
+    background: url(https://smartosystems.in/wp-content/uploads/2016/04/light-background.jpg) !important;
+    background-repeat: no-repeat !important;
+    background-attachment: fixed !important;
+    background-position: center !important;
+}
+
 
 
 

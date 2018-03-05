@@ -41,7 +41,9 @@ function editarPedidoOld() {
 
 
 
-
+/**
+ * Envia el producto editado con nuevos datos
+ */
 function updateData() {
     var pedido = new LineaDePedido();
 
@@ -64,7 +66,9 @@ function updateData() {
 
 
 
-
+/**
+ * 
+ */
 function editarPedido() {
 
 
@@ -511,8 +515,6 @@ function displayResult() {
 }
 
 function confirmarPedido() {
-    
-
     
     var pedido = "";
     //gets table
