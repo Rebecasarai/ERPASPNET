@@ -1,9 +1,8 @@
 ﻿window.addEventListener("load", iniciar);
 var fila = 1;
 var id;
-var idEditar;
 var dataTable;
-var tbodyEditar;
+var tbody;
 var tableHead;
 var filasBorradas = 0;
 var arraycosas = [];
@@ -72,95 +71,248 @@ function updateData() {
  * 
  */
 function editarPedido() {
-    
-    //alert("Pedido a editar " + this.id);
-
-    //alert(this);
-
-    $.ajax({
-        url: "../api/pedido/40",
-        dataType: 'json',
-        success: function (data) {
-            alert(data.ID);
 
 
+    var idPedido = this.parentNode.id.split("fila");
 
 
-        },
-        error: function (e) {
-            //called when there is an error
-            console.log(e.message);
-        }
-    });
+    //Hacemos el get de pedido particular
+    //document.getElementById("table1").insertRow(-1).innerHTML = '<td>Producto</td><td>Stock</td><td>Descripción</td><td>Cantidad</td><td>Precio Total</td>';
+    dataTable = document.getElementById('table1');
+    tableHead = document.getElementById('table-head');
+    tbody = document.createElement('tbody');
+
+    /*while (dataTable.firstChild) {
+        dataTable.removeChild(dataTable.firstChild);
+    }*/
+
+    dataTable.appendChild(tableHead);
+    var tr = document.createElement('tr'),
+        td0 = document.createElement('td'),
+        td1 = document.createElement('td'),
+        td2 = document.createElement('td'),
+        td3 = document.createElement('td'),
+        td4 = document.createElement('td'),
+        td5 = document.createElement('td'),
+        td6 = document.createElement('td'),
+        td7 = document.createElement('td'),
+        btnDelete = document.createElement('input');
 
 
-    
+    td7.style.display = "none";
+    td5.setAttribute('class', "total");
+    btnDelete.setAttribute('type', 'button');
+    btnDelete.setAttribute('class', 'btnDelete');
+    btnDelete.setAttribute('id', fila);
+    btnDelete.setAttribute('value', "Eliminar");
+    btnDelete.setAttribute('name', fila);
+
+
+    tr.appendChild(td0);
+    tr.appendChild(td1);
+    tr.appendChild(td2);
+    tr.appendChild(td3);
+    tr.appendChild(td4);
+    tr.appendChild(td5);
+    tr.appendChild(td6);
+    tr.appendChild(td7);
+
+
+    id = "slcProductos" + fila;
+    //$('.js-example-basic-single').select2;
+    var select = document.createElement("SELECT");
+    select.setAttribute('id', id);
+
+    td0.appendChild(select);
+
+
+
+
+
+
+
     $(document).ready(function () {
-        var $pagination = $('#pagination2'),
-            totalRecords = 1,
-            records = [],
-            displayRecords = [],
-            recPerPage = 1,
-            page = 1,
-            totalPages = 1;
+        $("#" + id).select2();
+    }).on("change", function () {
+        //Si el nombre del producto elegido está en el array auxiliar, cambiar el seleccionado al por defecto
+        for (var i = 0; i < arraycosas.length; i++) {
+            if (arraycosas[i].Nombre === td0.firstChild.value) {
 
-        $.ajax({
-            url: "../api/pedido/"+40,
-            async: true,
-            dataType: 'json',
-            success: function (data) {
-                records = data;
-                console.log(records);
-                totalRecords = records.length;
-                totalPages = 1;
-                apply_pagination();
+                td7.className
+                td7.setAttribute("id", arraycosas[i].ID);
+
+                td7.setAttribute("class", "productoId");
+                td7.value = arraycosas[i].ID;
+                td7.innerHTML = arraycosas[i].ID;
+                alert("idProducto desde el change: " + arraycosas[i].ID);
+
+                idProductoParaPEdido = arraycosas[i].ID;
+
+                productoSeleccionado = arraycosas[i];
             }
-        });
-        function generate_table() {
-            var tr;
-            $('#tbodyvacio').html('');
-            for (var i = 0; i < displayRecords.length; i++) {
-                alert(displayRecords[i].Fecha);
-                var lineas = displayRecords[i].LineasPedido;
-                alert(lineas);
-                tr = $('<tr/>');
-                tr.append('<td class="tdid">' + displayRecords[i].ID + "</td>");
-               // tr.append('<td  class="tdnombre"  onclick="editarPedido()" data-toggle="modal" data-target="#modalEditar" >' + displayRecords[i].Nombre + "</td>");
-               // tr.append('<td  class="tdfecha"  onclick="editarPedido()" data-toggle="modal" data-target="#modalEditar" >' + displayRecords[i].Cantidad + "</td>");
-                //tr.append('<td  class="tdprecio" onclick="editarPedido()" data-toggle="modal" data-target="#modalEditar" >' + displayRecords[i].Descripcion + "</td>");
-                //tr.append('<td  class="tdprecio" onclick="editarPedido()" data-toggle="modal" data-target="#modalEditar" >' + displayRecords[i].PrecioVenta + "</td>");
-                // tr.append('<td style="text- align: center;"><button id="' + displayRecords[i].ID + '" class="btn btnCancelar btn-default btnBorrar btnBorrar' + displayRecords[i].ID + '><span class="glyphicon glyphicon-remove"></span></button></td>');
-                //tr.append('<td style="text-align: center;"><button class="btn btnCancelar btn-default btnBorrar"' + displayRecords[i].ID + ' id="' + displayRecords[i].ID + '"><span class="glyphicon glyphicon-remove"></span></button></td>');
-               // tr.attr('id', 'fila' + displayRecords[i].ID);
-
-                $('#tbodyvacio').append(tr);
-            }
-            
-            $('.btnBorrar').click(cancelarPedido);
-            $('.tdid').click(editarPedido);
-            $('.tdnombre').click(editarPedido);
-            $('.tdfecha').click(editarPedido);
-            $('.tdid').click(editarPedido);
-            $('.tdnombre').css('cursor', 'pointer');
-            $('.tdfecha').css('cursor', 'pointer');
-            $('.tdprecio').css('cursor', 'pointer');
-
-
         }
-        function apply_pagination() {
-            $pagination.twbsPagination({
-                totalPages: totalPages,
-                visiblePages: 1,
-                onPageClick: function (event, page) {
-                    displayRecordsIndex = Math.max(page - 1, 0) * recPerPage;
-                    endRec = (displayRecordsIndex) + recPerPage;
-                    console.log(displayRecordsIndex + 'ssssssssss' + endRec);
-                    displayRecords = records.slice(displayRecordsIndex, endRec);
-                    generate_table();
-                }
+
+        if (td0.firstChild.value === "") {
+            td1.innerHTML = "";
+            td2.innerHTML = "";
+            td3.innerHTML = "";
+            td4.innerHTML = "";
+            td5.innerHTML = "";
+        } else {
+            var x = document.createElement("INPUT");
+            x.setAttribute("type", "number");
+            x.setAttribute("id", "cantidadinput");
+            x.setAttribute("class", "cantidadinput");
+            x.setAttribute("value", "1");
+            x.value = 1;
+            x.min = "1";
+            x.value = "1";
+            x.max = "123";
+
+
+
+            x.onkeypress = function (evt) {
+                evt.preventDefault();
+            };
+
+            td1.innerHTML = productoSeleccionado.Stock; //stock de la api
+            td2.innerHTML = productoSeleccionado.Descripcion;//descrupcion
+            td4.innerHTML = productoSeleccionado.PrecioUnitario;
+            if (td3.firstChild == null) {
+                td3.appendChild(x); //cantidad
+            }
+
+            x.addEventListener("change", new function () {
+                //resultado = parseInt(this.value) * parseInt(td4.innerHTML);
+                resultado = parseFloat(document.getElementById("cantidadinput").value) * parseFloat(td4.innerHTML);
+                td5.innerHTML = resultado;
             });
+
+            //precio
+            //Meter producto en el array auxiliar
         }
     });
+
+    //{ "ID":73, "Nombre":"Manta eléctrica", "Descripcion":"Manta eléctrica de alta calidad", "PrecioUnitario":12.5000, "Stock":-52, "Baja":true }
+
+
+
+    var option = document.createElement("option");
+    option.style.width = "200";
+    option.value = "";
+    option.text = "Seleccione un producto";
+    td0.firstChild.appendChild(option);
+
+    td6.appendChild(btnDelete);
+
+    //AÑADE A CADA BOTON ELIMINAR UN LISTENER PARA EL METODO
+    btnDelete.addEventListener("click", eliminarFila, false);
+
+    tbody.appendChild(tr);
+
+    dataTable.appendChild(tbody);
+    fila++;
+    //}
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+    var XMLHTR2 = new XMLHttpRequest();
+    if (XMLHTR2) {
+        XMLHTR2.open('GET', '../api/productos');
+        XMLHTR2.onreadystatechange = function () {
+
+
+            if (XMLHTR2.readyState === 4 && XMLHTR2.status === 200 || XMLHTR2.readyState === 4 && XMLHTR2.status === 204) {
+                arraycosas = JSON.parse(XMLHTR2.responseText);
+            }
+        }
+        XMLHTR2.send();
+    }
+
+
+
+    var XMLHTR = new XMLHttpRequest();
+    if (XMLHTR) {
+        XMLHTR.open('GET', '../api/pedido/' + idPedido);
+        XMLHTR.onreadystatechange = function () {
+            if (XMLHTR.readyState === 4 && XMLHTR.status === 200) {
+                var pedidoPUT = JSON.parse(XMLHTR.responseText);
+
+                var parsed = []
+                parsed = pedidoPUT.LineasPedido;
+
+                for (var i = 0; i < parsed.length; i++) {
+
+                    var lineaPedido = parsed[i];
+                    for (var j = 0; j < arraycosas.length; j++) {
+
+                        if (lineaPedido.IDProducto === arraycosas[j].ID) {
+                            //de arraycosas[i] pillas nombre, precio, descripcion, stock
+                            //de lineasPedido pillas la cantidad
+                            var nombreProducto = arraycosas[j].Nombre;
+                            var stockProducto = lineaPedido.Cantidad;
+                            var precioProducto = lineaPedido.PrecioVenta;
+
+                            td0.value = nombreProducto;
+                            td1.innerHTML = "20";
+                            td2.innerHTML = arraycosas[j].Descripcion;
+                            td3.innerHTML = stockProducto;
+                            td3.contentEditable = "true"
+                            td4.innerHTML = precioProducto;
+                            td5.innerHTML = pedidoPUT.PrecioTotal;
+
+                        }
+                    }
+
+                }
+
+                document.getElementById("tituloModal").textContent = "Actualizar Pedido " + idPedido + " con fecha " + JSON.stringify(pedidoPUT.Fecha);
+
+
+
+                if (td0.firstChild.value === "") {
+                } else {
+                    var x = document.createElement("INPUT");
+                    x.setAttribute("type", "number");
+                    x.setAttribute("id", "cantidadinput");
+                    x.setAttribute("class", "cantidadinput");
+                    x.setAttribute("value", "1");
+                    x.value = 1;
+                    x.min = "1";
+                    x.value = "1";
+                    x.max = "123";
+
+
+
+                    x.onkeypress = function (evt) {
+                        evt.preventDefault();
+                    };/*
+                    if (td3.firstChild != null) {
+                        td3.appendChild(x); //cantidad
+                    }*/
+
+
+                    x.addEventListener("change", new function () {
+                        //resultado = parseInt(this.value) * parseInt(td4.innerHTML);
+                        resultado = parseFloat(document.getElementById("cantidadinput").value) * parseFloat(td4.innerHTML);
+                        td5.innerHTML = resultado;
+                    });
+
+                    //precio
+                    //Meter producto en el array auxiliar
+                }
+
+
+                tbody.appendChild(tr);
+
+            }
+        }
+        XMLHTR.send();
+    }
+
+    document.getElementById("confirmarPedido").addEventListener("click", updatePedido);
 }
 
 
@@ -193,10 +345,15 @@ function updatePedido() {
 function displayResult() {
 
     document.getElementById("confirmarPedido").addEventListener("click", confirmarPedido);
+    //document.getElementById("table1").insertRow(-1).innerHTML = '<td>Producto</td><td>Stock</td><td>Descripción</td><td>Cantidad</td><td>Precio Total</td>';
     dataTable = document.getElementById('table1');
     tableHead = document.getElementById('table-head');
     tbody = document.createElement('tbody');
-    
+
+    /*while (dataTable.firstChild) {
+        dataTable.removeChild(dataTable.firstChild);
+    }*/
+
     dataTable.appendChild(tableHead);
     var tr = document.createElement('tr'),
         td0 = document.createElement('td'),
@@ -231,6 +388,7 @@ function displayResult() {
 
 
     id = "slcProductos" + fila;
+    //$('.js-example-basic-single').select2;
     var select = document.createElement("SELECT");
     select.setAttribute('id', id);
 
@@ -239,6 +397,7 @@ function displayResult() {
     $(document).ready(function () {
         $("#" + id).select2();
     }).on("change", function () {
+        //Si el nombre del producto elegido está en el array auxiliar, cambiar el seleccionado al por defecto
         for (var i = 0; i < arraycosas.length; i++) {
             if (arraycosas[i].Nombre === td0.firstChild.value) {
 
@@ -249,6 +408,9 @@ function displayResult() {
                 td7.value = arraycosas[i].ID;
                 td7.innerHTML = arraycosas[i].ID;
                 alert("idProducto" + arraycosas[i].ID);
+
+
+
                 productoSeleccionado = arraycosas[i];
             }
         }
@@ -293,12 +455,20 @@ function displayResult() {
             }
 
             x.addEventListener("change", new function () {
+                //resultado = parseInt(this.value) * parseInt(td4.innerHTML);
                 resultado = parseFloat(document.getElementById("cantidadinput").value) * parseFloat(td4.innerHTML);
                 td5.innerHTML = resultado;
             });
+
+            //precio
+            //Meter producto en el array auxiliar
         }
     });
-    
+
+    //{ "ID":73, "Nombre":"Manta eléctrica", "Descripcion":"Manta eléctrica de alta calidad", "PrecioUnitario":12.5000, "Stock":-52, "Baja":true }
+
+
+
     var option = document.createElement("option");
     option.style.width = "200";
     option.value = "";
@@ -329,11 +499,15 @@ function displayResult() {
 
 
     td6.appendChild(btnDelete);
+
+    //AÑADE A CADA BOTON ELIMINAR UN LISTENER PARA EL METODO
     btnDelete.addEventListener("click", eliminarFila, false);
+
     tbody.appendChild(tr);
 
     dataTable.appendChild(tbody);
     fila++;
+    //}
 }
 
 function confirmarPedido() {
@@ -356,7 +530,12 @@ function confirmarPedido() {
         //gets amount of cells of current row
         var cellLength = oCells.length;
         lineasDeProductos = cellLength;
-        
+
+        //--------------HAY QUE HACER QUE LAS QUE NO SE VEN NO SE METAN EN EN PEDIDO--------------
+
+        //if(se ve la row)
+
+        var aja = 0;
 
         //loops through each cell in current row
         for (var j = 0; j < cellLength; j++) {
@@ -390,6 +569,8 @@ function confirmarPedido() {
 
 
     addPedido(pedidoPost);
+
+
     document.getElementById("pedidoHecho").innerHTML = pedido;
     borrarTabla();
 }

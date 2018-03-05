@@ -88,6 +88,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="Javascript\Analisis.js" />
+    <Content Include="Javascript\ParaUnirEditar.js" />
     <Content Include="Javascript\TablaPedidos.js" />
     <Content Include="Javascript\dynamicmenu.js" />
     <Content Include="Javascript\LineaDePedido.js" />
@@ -103,6 +104,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.twbsPagination.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -118,6 +120,7 @@
     <Content Include="Views\login.html" />
     <Content Include="Views\Pedi2.html" />
     <Content Include="Views\Pedidos.html" />
+    <Content Include="Views\prueba.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

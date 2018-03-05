@@ -19,11 +19,79 @@ var idProducto = 0;
 
 
 function iniciar() {
+    nuevoListar();
 }
 
+
 /**
- * Modal
+ * Nueva forma de listar productos y paginar correctamente
  */
+function nuevoListar() {
+
+    $(document).ready(function () {
+        var $pagination = $('#pagination'),
+            totalRecords = 0,
+            records = [],
+            displayRecords = [],
+            recPerPage = 10,
+            page = 1,
+            totalPages = 0;
+
+        $.ajax({
+            url: "../api/pedido?nElementosPagina=100",
+            async: true,
+            dataType: 'json',
+            success: function (data) {
+                records = data;
+                console.log(records);
+                totalRecords = records.length;
+                totalPages = Math.ceil(totalRecords / recPerPage);
+                apply_pagination();
+            }
+        });
+        function generate_table() {
+            var tr;
+            $('#emp_body').html('');
+            for (var i = 0; i < displayRecords.length; i++) {
+                tr = $('<tr/>');
+                tr.append('<td class="tdid">' + displayRecords[i].ID + "</td>");
+                tr.append('<td  class="tdnombre"  onclick="editarPedido()" data-toggle="modal" data-target="#modalEditar" >' + displayRecords[i].NombreCliente + "</td>");
+                tr.append('<td  class="tdfecha"  onclick="editarPedido()" data-toggle="modal" data-target="#modalEditar" >' + displayRecords[i].Fecha + "</td>");
+                tr.append('<td  class="tdprecio" onclick="editarPedido()" data-toggle="modal" data-target="#modalEditar" >' + displayRecords[i].PrecioTotal + "</td>");
+                // tr.append('<td style="text- align: center;"><button id="' + displayRecords[i].ID + '" class="btn btnCancelar btn-default btnBorrar btnBorrar' + displayRecords[i].ID + '><span class="glyphicon glyphicon-remove"></span></button></td>');
+                tr.append('<td style="text-align: center;"><button class="btn btnCancelar btn-default btnBorrar"' + displayRecords[i].ID+' id="' + displayRecords[i].ID + '"><span class="glyphicon glyphicon-remove"></span></button></td>');
+                tr.attr('id', 'fila' + displayRecords[i].ID);
+
+                $('#emp_body').append(tr);
+            }
+
+            $('.btnBorrar').click(cancelarPedido);
+            $('.tdid').click(editarPedido);
+            $('.tdnombre').click(editarPedido);
+            $('.tdfecha').click(editarPedido);
+            $('.tdid').click(editarPedido);
+            $('.tdnombre').css('cursor', 'pointer');
+            $('.tdfecha').css('cursor', 'pointer');
+            $('.tdprecio').css('cursor', 'pointer');
+            
+
+        }
+        function apply_pagination() {
+            $pagination.twbsPagination({
+                totalPages: totalPages,
+                visiblePages: 6,
+                onPageClick: function (event, page) {
+                    displayRecordsIndex = Math.max(page - 1, 0) * recPerPage;
+                    endRec = (displayRecordsIndex) + recPerPage;
+                    console.log(displayRecordsIndex + 'ssssssssss' + endRec);
+                    displayRecords = records.slice(displayRecordsIndex, endRec);
+                    generate_table();
+                }
+            });
+        }
+    });
+}
+
 
 
 
@@ -42,7 +110,7 @@ $(document).ready(function (e) {
 $(document).ready(cargar);
 
 function cargar() {
-    cargarPedidos(50);
+    //scargarPedidos(50);
     $.ajax({
         url: "../Views/Pedidos.html", success: function (result) {
             $("#contenido").html(result);
@@ -66,7 +134,7 @@ function escucharMenu() {
         e.preventDefault();
     });
 }
-
+/*
 function cargarPedidos(numero) {
     var XMLHTR = new XMLHttpRequest();
     if (XMLHTR) {
@@ -79,7 +147,6 @@ function cargarPedidos(numero) {
             if (XMLHTR.readyState === 4 && XMLHTR.status === 200) {
 
                 root.innerHTML = "";
-                /*[{"ID":5,"IDCliente":1,"Fecha":"2018-02-13T12:53:12.433","PrecioTotal":1000.0000},{"ID":4,"IDCliente":1,"Fecha":"2018-02-13T12:51:27.563","PrecioTotal":1000.0000},{"ID":3,"IDCliente":1,"Fecha":"2018-02-13T12:46:48.017","PrecioTotal":500.0000},{"ID":2,"IDCliente":1,"Fecha":"2018-02-13T12:39:40.537","PrecioTotal":500.0000},{"ID":1,"IDCliente":1,"Fecha":"2018-02-13T12:19:04.793","PrecioTotal":734.0000}]*/
                 
                 var arrayPedidos = JSON.parse(XMLHTR.responseText);
                 var tabla = document.createElement("table");
@@ -199,7 +266,7 @@ function cargarPedidos(numero) {
 
 }
 
-
+*/
 
 function paginacion() {
     var pagina = document.getElementsByClassName('mypaginacion')[0].getElementsByClassName('active')[0];
@@ -361,6 +428,7 @@ function buscarPorID(numero) {
 
 
 function cancelarPedido() {
+    alert(this.id);
 
     var idPedido = this.id.split("fila");
     if (confirm('Esta seguro de cancelar ' + idPedido + "?")) {
@@ -370,6 +438,7 @@ function cancelarPedido() {
             if (xhr.readyState == 4 && xhr.status == "204") {
 
                 cargarPedidos();
+                nuevoListar();
             }
         }
         xhr.send();
@@ -456,3 +525,5 @@ function priceSorter(a, b) {
     if (a < b) return -1;
     return 0;
 }
+
+
