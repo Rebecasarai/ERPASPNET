@@ -17,6 +17,9 @@ var cantidad = 0;
 var idProducto = 0;
 
 
+var arrayProductos = [];
+
+
 
 function iniciar() {
     nuevoListar();
@@ -55,9 +58,9 @@ function nuevoListar() {
             for (var i = 0; i < displayRecords.length; i++) {
                 tr = $('<tr/>');
                 tr.append('<td class="tdid">' + displayRecords[i].ID + "</td>");
-                tr.append('<td  class="tdnombre"  onclick="editarPedido()" data-toggle="modal" data-target="#modalEditar" >' + displayRecords[i].NombreCliente + "</td>");
-                tr.append('<td  class="tdfecha"  onclick="editarPedido()" data-toggle="modal" data-target="#modalEditar" >' + displayRecords[i].Fecha + "</td>");
-                tr.append('<td  class="tdprecio" onclick="editarPedido()" data-toggle="modal" data-target="#modalEditar" >' + displayRecords[i].PrecioTotal + "</td>");
+                tr.append('<td  class="tdnombre" data-toggle="modal" data-target="#modalEditar" >' + displayRecords[i].NombreCliente + "</td>");
+                tr.append('<td  class="tdfecha"  data-toggle="modal" data-target="#modalEditar" >' + displayRecords[i].Fecha + "</td>");
+                tr.append('<td  class="tdprecio" data-toggle="modal" data-target="#modalEditar" >' + displayRecords[i].PrecioTotal + "</td>");
                 // tr.append('<td style="text- align: center;"><button id="' + displayRecords[i].ID + '" class="btn btnCancelar btn-default btnBorrar btnBorrar' + displayRecords[i].ID + '><span class="glyphicon glyphicon-remove"></span></button></td>');
                 tr.append('<td style="text-align: center;"><button class="btn btnCancelar btn-default btnBorrar"' + displayRecords[i].ID+' id="' + displayRecords[i].ID + '"><span class="glyphicon glyphicon-remove"></span></button></td>');
                 tr.attr('id', 'fila' + displayRecords[i].ID);
@@ -69,7 +72,6 @@ function nuevoListar() {
             $('.tdid').click(editarPedido);
             $('.tdnombre').click(editarPedido);
             $('.tdfecha').click(editarPedido);
-            $('.tdid').click(editarPedido);
             $('.tdnombre').css('cursor', 'pointer');
             $('.tdfecha').css('cursor', 'pointer');
             $('.tdprecio').css('cursor', 'pointer');
@@ -93,6 +95,74 @@ function nuevoListar() {
 }
 
 
+
+
+
+/**
+ * 
+ */
+function editarPedido() {
+
+    getProductos();
+
+    $.ajax({
+        url: "../api/pedido/40",
+        dataType: 'json',
+        success: function (data) {
+            alert(JSON.stringify(data.LineasPedido));
+            var lineas = [];
+            lineas = data.LineasPedido;
+            $('#tbodyvacio').html('');
+            $('#tituloModalEditar').html('Editar pedido ' + data.ID + 'con fecha ' + data.Fecha);
+            $('#botonEditarCancelar').click(cancelarPedidoParametro(data.ID));
+            botonEditarCancelar
+            for (var i = 0; i < lineas.length; i++) {
+                tr = $('<tr/>');
+                tr.append('<td class="tdid">' + data.ID + "</td>");
+                tr.append('<td class="tdStock">' + 30 + "</td>");
+                tr.append('<td class="tdFecha">' + "descripcion" + "</td>");
+                tr.append('<td class="tdCantidad">' + lineas[i].Cantidad + "</td>");
+                tr.append('<td class="tdPrecioUnitario">' + lineas[i].PrecioVenta + "</td>");
+                tr.append('<td class="tdPrecioTotal">' + data.PrecioTotal + "</td>");
+                $('#tbodyvacio').append(tr);
+                
+                for (var j = 0; j < arrayProductos.length; j++) {
+                    if (lineaPedido.IDProducto == arrayProductos[j].ID) {
+                        alert("SIIIII");
+                    }
+                }
+
+            }
+
+        },
+        error: function (e) {
+            //called when there is an error
+            console.log(e.message);
+        }
+    });
+
+
+}
+
+
+
+
+function getProductos() {
+    $.ajax({
+        url: "../api/pedido",
+        dataType: 'json',
+        success: function (data) {
+            alert(data);
+            arrayProductos = data;
+            
+
+        },
+        error: function (e) {
+            //called when there is an error
+            console.log(e.message);
+        }
+    });
+}
 
 
 $(document).ready(function (e) {
@@ -431,6 +501,23 @@ function cancelarPedido() {
     alert(this.id);
 
     var idPedido = this.id.split("fila");
+    if (confirm('Esta seguro de cancelar ' + idPedido + "?")) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("DELETE", '../api/pedido' + '/' + idPedido, true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == "204") {
+
+                cargarPedidos();
+                nuevoListar();
+            }
+        }
+        xhr.send();
+    }
+}
+
+
+
+function cancelarPedidoParametro(idPedido) {
     if (confirm('Esta seguro de cancelar ' + idPedido + "?")) {
         var xhr = new XMLHttpRequest();
         xhr.open("DELETE", '../api/pedido' + '/' + idPedido, true);

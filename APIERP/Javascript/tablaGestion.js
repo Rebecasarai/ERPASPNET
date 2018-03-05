@@ -31,18 +31,6 @@ function iniciar() {
 
 
 
-
-
-function editarPedidoOld() {
-    var idPedidoGet = parseInt(this.id.split("fila"));
-    alert("Pedido a editar " + idPedidoGet);
-
-    displayModal(idPedidoGet);
-}
-
-
-
-
 /**
  * Envia el producto editado con nuevos datos
  */
@@ -67,101 +55,6 @@ function updateData() {
 }
 
 
-
-/**
- * 
- */
-function editarPedido() {
-    
-    //alert("Pedido a editar " + this.id);
-
-    //alert(this);
-
-    $.ajax({
-        url: "../api/pedido/40",
-        dataType: 'json',
-        success: function (data) {
-            alert(data.ID);
-
-
-
-
-        },
-        error: function (e) {
-            //called when there is an error
-            console.log(e.message);
-        }
-    });
-
-
-    
-    $(document).ready(function () {
-        var $pagination = $('#pagination2'),
-            totalRecords = 1,
-            records = [],
-            displayRecords = [],
-            recPerPage = 1,
-            page = 1,
-            totalPages = 1;
-
-        $.ajax({
-            url: "../api/pedido/"+40,
-            async: true,
-            dataType: 'json',
-            success: function (data) {
-                records = data;
-                console.log(records);
-                totalRecords = records.length;
-                totalPages = 1;
-                apply_pagination();
-            }
-        });
-        function generate_table() {
-            var tr;
-            $('#tbodyvacio').html('');
-            for (var i = 0; i < displayRecords.length; i++) {
-                alert(displayRecords[i].Fecha);
-                var lineas = displayRecords[i].LineasPedido;
-                alert(lineas);
-                tr = $('<tr/>');
-                tr.append('<td class="tdid">' + displayRecords[i].ID + "</td>");
-               // tr.append('<td  class="tdnombre"  onclick="editarPedido()" data-toggle="modal" data-target="#modalEditar" >' + displayRecords[i].Nombre + "</td>");
-               // tr.append('<td  class="tdfecha"  onclick="editarPedido()" data-toggle="modal" data-target="#modalEditar" >' + displayRecords[i].Cantidad + "</td>");
-                //tr.append('<td  class="tdprecio" onclick="editarPedido()" data-toggle="modal" data-target="#modalEditar" >' + displayRecords[i].Descripcion + "</td>");
-                //tr.append('<td  class="tdprecio" onclick="editarPedido()" data-toggle="modal" data-target="#modalEditar" >' + displayRecords[i].PrecioVenta + "</td>");
-                // tr.append('<td style="text- align: center;"><button id="' + displayRecords[i].ID + '" class="btn btnCancelar btn-default btnBorrar btnBorrar' + displayRecords[i].ID + '><span class="glyphicon glyphicon-remove"></span></button></td>');
-                //tr.append('<td style="text-align: center;"><button class="btn btnCancelar btn-default btnBorrar"' + displayRecords[i].ID + ' id="' + displayRecords[i].ID + '"><span class="glyphicon glyphicon-remove"></span></button></td>');
-               // tr.attr('id', 'fila' + displayRecords[i].ID);
-
-                $('#tbodyvacio').append(tr);
-            }
-            
-            $('.btnBorrar').click(cancelarPedido);
-            $('.tdid').click(editarPedido);
-            $('.tdnombre').click(editarPedido);
-            $('.tdfecha').click(editarPedido);
-            $('.tdid').click(editarPedido);
-            $('.tdnombre').css('cursor', 'pointer');
-            $('.tdfecha').css('cursor', 'pointer');
-            $('.tdprecio').css('cursor', 'pointer');
-
-
-        }
-        function apply_pagination() {
-            $pagination.twbsPagination({
-                totalPages: totalPages,
-                visiblePages: 1,
-                onPageClick: function (event, page) {
-                    displayRecordsIndex = Math.max(page - 1, 0) * recPerPage;
-                    endRec = (displayRecordsIndex) + recPerPage;
-                    console.log(displayRecordsIndex + 'ssssssssss' + endRec);
-                    displayRecords = records.slice(displayRecordsIndex, endRec);
-                    generate_table();
-                }
-            });
-        }
-    });
-}
 
 
 
