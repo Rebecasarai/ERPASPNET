@@ -25,8 +25,7 @@ function cargar() {
  * Nueva forma de listar productos y paginar correctamente
  */
 function nuevoListar() {
-
-    //$(document).ready(function () {
+    
         var $pagination = $('#pagination'),
             totalRecords = 0,
             records = [],
@@ -87,7 +86,6 @@ function nuevoListar() {
                 }
             });
         }
-   // });
 }
 
 
