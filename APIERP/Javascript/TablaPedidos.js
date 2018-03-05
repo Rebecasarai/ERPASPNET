@@ -42,7 +42,7 @@ $(document).ready(function (e) {
 $(document).ready(cargar);
 
 function cargar() {
-    cargarPedidos();
+    cargarPedidos(50);
     $.ajax({
         url: "../Views/Pedidos.html", success: function (result) {
             $("#contenido").html(result);
@@ -60,20 +60,17 @@ function escucharMenu() {
         containers.addClass('invisible');
         $(direccion).removeClass('invisible');
         $(direccion).addClass('visible');
-
     });
-
-
 
     $("a").on('Click', function () {
         e.preventDefault();
     });
 }
 
-function cargarPedidos() {
+function cargarPedidos(numero) {
     var XMLHTR = new XMLHttpRequest();
     if (XMLHTR) {
-        XMLHTR.open('GET', '../api/pedido?nElementosPagina=50');
+        XMLHTR.open('GET', '../api/pedido?nElementosPagina=' + numero);
         XMLHTR.onreadystatechange = function () {
 
             var root = document.getElementById("pedidosCompleto");
@@ -83,8 +80,7 @@ function cargarPedidos() {
 
                 root.innerHTML = "";
                 /*[{"ID":5,"IDCliente":1,"Fecha":"2018-02-13T12:53:12.433","PrecioTotal":1000.0000},{"ID":4,"IDCliente":1,"Fecha":"2018-02-13T12:51:27.563","PrecioTotal":1000.0000},{"ID":3,"IDCliente":1,"Fecha":"2018-02-13T12:46:48.017","PrecioTotal":500.0000},{"ID":2,"IDCliente":1,"Fecha":"2018-02-13T12:39:40.537","PrecioTotal":500.0000},{"ID":1,"IDCliente":1,"Fecha":"2018-02-13T12:19:04.793","PrecioTotal":734.0000}]*/
-
-
+                
                 var arrayPedidos = JSON.parse(XMLHTR.responseText);
                 var tabla = document.createElement("table");
                 tabla.setAttribute("id", "tablePedidos");
@@ -191,24 +187,29 @@ function cargarPedidos() {
                     tabla.appendChild(mRow);
                 }
 
+                
                 root.appendChild(tabla);
 
                 cargarBuscador();
             }
         }
         XMLHTR.send();
+        
     }
 
 }
 
 
-function cargarBuscador() {
-    /*
-    document.getElementById("idCabecera").addEventListener("click", sortTable(0));/
-    document.getElementById("nombreCabecera").addEventListener("click", sortTable(1));
-    document.getElementById("fechaCabecera").addEventListener("click", sortTable(2));
-    document.getElementById("precioCabecera").addEventListener("click", sortTable(3));*/
 
+function paginacion() {
+    var pagina = document.getElementsByClassName('mypaginacion')[0].getElementsByClassName('active')[0];
+   alert(pagina);
+}
+
+    
+
+
+function cargarBuscador() {
 
     switch (document.getElementById("search_param").value) {
         case "ID":
@@ -261,7 +262,6 @@ function buscarPorImporte(numero) {
     for (i = 0; i < tr.length; i++) {
         //especificamos la columna a buscar
         td = tr[i].getElementsByTagName("td")[3];
-        //alert(td.innerHTML);
         if (td) {
             if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
                 tr[i].style.display = "";
