@@ -277,6 +277,10 @@ function addPedido(pedido) {
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == "204" /*|| xhr.status == "200"*/) {
             alert("Se ha insertado correctamente");
+
+            //location.reload();
+            nuevoListar();
+
         }
     }
     xhr.send(json);

@@ -82,10 +82,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\logoERP.png" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\contact.css" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Styles\bootstrap.css" />
+    <Content Include="Styles\bootstrap.min.css" />
+    <Content Include="Styles\contact.css" />
+    <Content Include="Styles\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="Javascript\Analisis.js" />
     <Content Include="Javascript\ParaUnirEditar.js" />
@@ -95,26 +95,24 @@
     <Content Include="Javascript\Pedido.js" />
     <Content Include="Javascript\PedidoConLineaPedido.js" />
     <Content Include="Javascript\validation.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.css" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\CustomBootstrap.js" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <Content Include="Scripts\jquery.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.twbsPagination.min.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\ModeloPedido.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="LibreriasJs\bootstrap.js" />
+    <Content Include="LibreriasJs\bootstrap.min.css" />
+    <Content Include="LibreriasJs\bootstrap.min.js" />
+    <Content Include="LibreriasJs\CustomBootstrap.js" />
+    <None Include="LibreriasJs\jquery-1.10.2.intellisense.js" />
+    <Content Include="LibreriasJs\jquery-1.10.2.js" />
+    <Content Include="LibreriasJs\jquery-1.10.2.min.js" />
+    <Content Include="LibreriasJs\jquery.min.js" />
+    <None Include="LibreriasJs\jquery.validate-vsdoc.js" />
+    <Content Include="LibreriasJs\jquery.twbsPagination.min.js" />
+    <Content Include="LibreriasJs\jquery.validate.js" />
+    <Content Include="LibreriasJs\jquery.validate.min.js" />
+    <Content Include="LibreriasJs\jquery.validate.unobtrusive.js" />
+    <Content Include="LibreriasJs\jquery.validate.unobtrusive.min.js" />
+    <Content Include="LibreriasJs\ModeloPedido.js" />
+    <Content Include="LibreriasJs\modernizr-2.6.2.js" />
     <Content Include="Javascript\tablaGestion.js" />
     <Content Include="Styles\estilo.css" />
-    <Content Include="Styles\login.css" />
-    <Content Include="Styles\menu.css" />
     <Content Include="Views\EnConstruccion.html" />
     <Content Include="Views\Index.html" />
     <Content Include="Views\login.html" />
@@ -134,7 +132,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="LibreriasJs\jquery-1.10.2.min.map" />
     <Content Include="Views\Index2.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
