@@ -6,10 +6,8 @@ var tableHead;
 var arraycosas = [];
 var pedido;
 var resultado = 0;
-
 var precioTotal = 0;
 var lineasDeProductos = 0;
-
 var productos = [];
 var cantidad = 0;
 var idProducto = 0;
@@ -60,7 +58,6 @@ function displayResult() {
         td7 = document.createElement('td'),
         btnDelete = document.createElement('input');
 
-
     td4.contentEditable = "true";
     td7.style.display = "none";
     td5.setAttribute('class', "total");
@@ -69,8 +66,7 @@ function displayResult() {
     btnDelete.setAttribute('id', fila);
     btnDelete.setAttribute('value', "Eliminar");
     btnDelete.setAttribute('name', fila);
-
-
+    
     tr.appendChild(td0);
     tr.appendChild(td1);
     tr.appendChild(td2);
@@ -79,7 +75,6 @@ function displayResult() {
     tr.appendChild(td5);
     tr.appendChild(td6);
     tr.appendChild(td7);
-
 
     id = "slcProductos" + fila;
     var select = document.createElement("SELECT");
@@ -95,11 +90,9 @@ function displayResult() {
 
                 td7.className
                 td7.setAttribute("id", arraycosas[i].ID);
-
                 td7.setAttribute("class", "productoId");
                 td7.value = arraycosas[i].ID;
                 td7.innerHTML = arraycosas[i].ID;
-                alert("idProducto" + arraycosas[i].ID);
                 productoSeleccionado = arraycosas[i];
             }
         }
@@ -114,37 +107,52 @@ function displayResult() {
         } else {
             var x = document.createElement("INPUT");
             x.setAttribute("type", "number");
-            x.setAttribute("id", "cantidadinput");
+            x.setAttribute("id", "cantidadinput" + fila);
             x.setAttribute("class", "cantidadinput");
             x.setAttribute("value", "1");
+            x.setAttribute("fila", fila);
             x.value = 1;
-            //x.setAttribute("minValue", "1");
             x.min = "1";
             x.value = "1";
             x.max = "123";
-
-
+            
             var precioInput = document.createElement("INPUT");
             precioInput.setAttribute("type", "number");
-            precioInput.setAttribute("id", "precioinput");
+            precioInput.setAttribute("id", "precioinput" + fila);
+            precioInput.setAttribute("fila", fila);
+            precioInput.setAttribute("class", "precioinput");
             precioInput.min = "1";
-            precioInput.max = "123";
+            precioInput.setAttribute("value", productoSeleccionado.PrecioUnitario);
+            precioInput.value = productoSeleccionado.PrecioUnitario;
 
 
 
             x.onkeypress = function (evt) {
                 evt.preventDefault();
             };
+            precioInput.onkeypress = function (evt) {
+                evt.preventDefault();
+            };
 
             td1.innerHTML = productoSeleccionado.Stock; //stock de la api
             td2.innerHTML = productoSeleccionado.Descripcion;//descrupcion
-            td4.innerHTML = productoSeleccionado.PrecioUnitario;
+            //td4.innerHTML = productoSeleccionado.PrecioUnitario;
             if (td3.firstChild == null) {
                 td3.appendChild(x); //cantidad
             }
+            if (td4.firstChild == null) {
+                td4.appendChild(precioInput); //precio
+            }
 
-            x.addEventListener("change", new function () {
-                resultado = parseFloat(document.getElementById("cantidadinput").value) * parseFloat(td4.innerHTML);
+            precioInput.addEventListener("change", function () {
+                var mFila = this.getAttribute("fila");
+                resultado = parseFloat(document.getElementById("cantidadinput" + fila).value) * parseFloat(document.getElementById("precioinput" + fila).value);
+                td5.innerHTML = resultado;
+            });
+
+            x.addEventListener("change", function () {
+                var mFila = this.getAttribute("fila");
+                resultado = parseFloat(document.getElementById("cantidadinput" + fila).value) * parseFloat(document.getElementById("precioinput" + fila).value);
                 td5.innerHTML = resultado;
             });
         }
@@ -160,8 +168,6 @@ function displayResult() {
     if (XMLHTR) {
         XMLHTR.open('GET', '../api/productos');
         XMLHTR.onreadystatechange = function () {
-
-
             if (XMLHTR.readyState === 4 && XMLHTR.status === 200 || XMLHTR.readyState === 4 && XMLHTR.status === 204) {
                 arraycosas = JSON.parse(XMLHTR.responseText);
 
@@ -172,12 +178,10 @@ function displayResult() {
                     option.style.width = "200px";
                     td0.firstChild.appendChild(option);
                 }
-
             }
         }
         XMLHTR.send();
     }
-
 
     td6.appendChild(btnDelete);
     btnDelete.addEventListener("click", eliminarFila, false);
@@ -269,7 +273,6 @@ function addPedido(pedido) {
     var url = '../api/Pedido';
 
     var json = JSON.stringify(pedido);
-    alert(json);
 
     var xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);

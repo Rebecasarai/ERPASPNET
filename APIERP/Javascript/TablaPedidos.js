@@ -119,12 +119,12 @@ function editarPedido() {
                 for (var j = 0; j < arrayProductos.length; j++) {
                     if (lineas[i].IDProducto == arrayProductos[j].ID) {
                         tr = $('<tr/>');
-                        
+                        tr.attr('id', 'fila' + lineas[i].ID);
                         tr.append('<td class="tdid">' + arrayProductos[j].Nombre + "</td>");
                         tr.append('<td class="tdStock">' + arrayProductos[j].Stock + "</td>");
                         tr.append('<td class="tdFecha">' + arrayProductos[j].Descripcion + "</td>");
-                        tr.append('<td class="tdCantidad"><input type="number" id="cantidadinput" class="cantidadinput" value='+ lineas[i].Cantidad +' min="1" max="123"> </td>');
-                        tr.append('<td class="tdPrecioUnitario"><input type="number" id="cantidadinput" class="precioinput" value=' + lineas[i].PrecioVenta+' min="1" max="123"> </td>');
+                        tr.append('<td class="tdCantidad"><input type="number" id="cantidadEditar" onchange="actualizarImporte" class="cantidadinput" value='+ lineas[i].Cantidad +' min="1" > </td>');
+                        tr.append('<td class="tdPrecioUnitario"><input type="number" onchange="actualizarImporte" id="precioEditar" class="precioinput" value=' + lineas[i].PrecioVenta+' min="1" > </td>');
                         tr.append('<td class="tdPrecioTotal">' + data.PrecioTotal + "</td>");
                         $('#tbodyvacio').append(tr);
                 
@@ -132,8 +132,6 @@ function editarPedido() {
                 }
 
             }
-            
-
         },
         error: function (e) {
             console.log(e.message);
@@ -143,9 +141,27 @@ function editarPedido() {
 }
 
 
+function actualizarImporte() {
+}
+
 
 function actualizarPedido() {
 
+    var idPedido = this.parentNode.id.split('fila')[1];
+    $.ajax({
+        type: "PUT",
+        url: urlPrefix + "../api/pedido/" + idPedido,
+        data: $("#fila" + idPedido).serialize(),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        statusCode: {
+            204: function (jqXHR) {
+                alert("Pedido editado");
+            }
+        }
+    }).done(function () {
+        alert("editado correctamente");
+    });
 }
 
 
