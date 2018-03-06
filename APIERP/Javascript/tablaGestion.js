@@ -57,8 +57,7 @@ function displayResult() {
         td6 = document.createElement('td'),
         td7 = document.createElement('td'),
         btnDelete = document.createElement('input');
-
-    td4.contentEditable = "true";
+    
     td7.style.display = "none";
     td5.setAttribute('class', "total");
     btnDelete.setAttribute('type', 'button');
@@ -126,7 +125,7 @@ function displayResult() {
             precioInput.value = productoSeleccionado.PrecioUnitario;
 
 
-
+            
             x.onkeypress = function (evt) {
                 evt.preventDefault();
             };
@@ -142,6 +141,10 @@ function displayResult() {
             }
             if (td4.firstChild == null) {
                 td4.appendChild(precioInput); //precio
+            }
+            if (td5.firstChild == null) {
+
+                td5.innerHTML = productoSeleccionado.PrecioUnitario;
             }
 
             precioInput.addEventListener("change", function () {
