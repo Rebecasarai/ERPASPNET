@@ -42,9 +42,7 @@ function nuevoListar() {
                 totalRecords = records.length;
                 totalPages = Math.ceil(totalRecords / recPerPage);
                 $('#pagination').empty();
-
                 $('#pagination').removeData("twbs-pagination");
-
                 $('#pagination').unbind("page");
 
                 apply_pagination();
@@ -72,7 +70,6 @@ function nuevoListar() {
             $('.tdnombre').css('cursor', 'pointer');
             $('.tdfecha').css('cursor', 'pointer');
             $('.tdprecio').css('cursor', 'pointer');
-            
 
         }
         function apply_pagination() {
@@ -122,11 +119,12 @@ function editarPedido() {
                 for (var j = 0; j < arrayProductos.length; j++) {
                     if (lineas[i].IDProducto == arrayProductos[j].ID) {
                         tr = $('<tr/>');
-                        tr.append('<td class="tdid">' + data.ID + "</td>");
+                        
+                        tr.append('<td class="tdid">' + arrayProductos[j].Nombre + "</td>");
                         tr.append('<td class="tdStock">' + arrayProductos[j].Stock + "</td>");
                         tr.append('<td class="tdFecha">' + arrayProductos[j].Descripcion + "</td>");
-                        tr.append('<td class="tdCantidad">' + lineas[i].Cantidad + "</td>");
-                        tr.append('<td class="tdPrecioUnitario">' + lineas[i].PrecioVenta + "</td>");
+                        tr.append('<td class="tdCantidad"><input type="number" id="cantidadinput" class="cantidadinput" value='+ lineas[i].Cantidad +' min="1" max="123"> </td>');
+                        tr.append('<td class="tdPrecioUnitario"><input type="number" id="cantidadinput" class="precioinput" value=' + lineas[i].PrecioVenta+' min="1" max="123"> </td>');
                         tr.append('<td class="tdPrecioTotal">' + data.PrecioTotal + "</td>");
                         $('#tbodyvacio').append(tr);
                 
@@ -144,6 +142,11 @@ function editarPedido() {
 
 }
 
+
+
+function actualizarPedido() {
+
+}
 
 
 /**

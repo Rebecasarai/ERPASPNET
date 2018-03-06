@@ -9,26 +9,38 @@
     <link rel="shortcut icon" href="../Assets/logoERP.png" type="image/x-icon">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <link href="../Styles/estilo.css" rel="stylesheet" />
     <link href="../Styles/menu.css" rel="stylesheet" />
-    <link rel="stylesheet" href="../LibreriasJs/bootstrap.min.css">
-    <link rel="stylesheet" href="../Styles/contact.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-    <script src="../Javascript/Analisis.js"></script>
-    <script src="../Javascript/validation.js"></script>
-    <script src="../LibreriasJs/jquery.min.js"></script>
-    <script src="../LibreriasJs/CustomBootstrap.js"></script>
-    <script src="../Javascript/dynamicmenu.js"></script>
     <script src="../LibreriasJs/jquery.twbsPagination.min.js"></script>
     <script src="../Javascript/LineaDePedido.js"></script>
     <script src="../Javascript/PedidoConLineaPedido.js"></script>
     <script src="../Javascript/tablaGestion.js"></script>
     <script src="../Javascript/TablaPedidos.js"></script>
+    <script src="../Javascript/Analisis.js"></script>
+    <script src="../Javascript/validation.js"></script>
+    <script src="../LibreriasJs/jquery-1.10.2.min.js"></script>
+    <script src="../LibreriasJs/CustomBootstrap.js"></script>
+    <script src="../Javascript/dynamicmenu.js"></script>
+    <script src="../Scripts/jquery.twbsPagination.min.js"></script>
+    <script src="../LibreriasJs/jquery.min.js"></script>
+    <script src="../LibreriasJs/CustomBootstrap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <link rel="stylesheet" href="../LibreriasJs/bootstrap.min.css">
+    <link rel="stylesheet" href="../Styles/contact.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../Scripts/bootstrap.min.css">
+    <link rel="stylesheet" href="../Styles/contact.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 </head>
 <body>
     <nav class="main-menu" id="mainmanu">
@@ -149,6 +161,7 @@
                             </div>
                         </div>
                         <br />
+                        <button type="button" class="btn btn-default" onclick="actualizarPedido()">Actualizar pedido</button>
                     </div>
                     <div class="modal-footer">
                         <button type="button" id="botonEditarCancelar"  class="btn btn-default">Cancelar pedido</button>
