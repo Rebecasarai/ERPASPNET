@@ -21,13 +21,13 @@
         <div class="arrow-down"></div>
     </div>
     <div class="row loginDiv">
-        <form class="form-inline" id="myform" name="login" action="Index.html">
+        <form class="form-inline" method="post" id="myform" name="login">
             <div class="form-group">
                 <label for="email">
                     <p><span class="glyphicon glyphicon-user"> </span> Email:</p>
                 </label>
                 <input name="email" data-toggle="tooltip" data-trigger="focus" type="email" class="form-control" id="email" placeholder="Ingrese email" name="email">
-                <div id="tooltipdiv">
+                <div id="tooltipdiv2">
                     No puede estar blanco
                 </div>
             </div>
@@ -43,7 +43,7 @@
             <div class="checkbox">
                 <label class="blackyme"><input type="checkbox" name="remember" > Recuerdame</label>
             </div>
-            <button type="submit" id="botonSubmit" class="btn btn-primary">Entrar</button>
+            <a href="Index.html"><input value="Entrar" type="button" id="botonSubmit" class="btn btn-primary"/></a>
         </form>
     </div>
     <!--  </div>-->

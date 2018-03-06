@@ -1,0 +1,8 @@
+C:\Users\rsgonzalez\Desktop\OnlineERP\CapaDAL\bin\Release\CapaDAL.dll
+C:\Users\rsgonzalez\Desktop\OnlineERP\CapaDAL\bin\Release\CapaDAL.pdb
+C:\Users\rsgonzalez\Desktop\OnlineERP\CapaDAL\bin\Release\Entities.dll
+C:\Users\rsgonzalez\Desktop\OnlineERP\CapaDAL\bin\Release\Entities.pdb
+C:\Users\rsgonzalez\Desktop\OnlineERP\CapaDAL\obj\Release\CapaDAL.csprojResolveAssemblyReference.cache
+C:\Users\rsgonzalez\Desktop\OnlineERP\CapaDAL\obj\Release\CapaDAL.csproj.CoreCompileInputs.cache
+C:\Users\rsgonzalez\Desktop\OnlineERP\CapaDAL\obj\Release\CapaDAL.dll
+C:\Users\rsgonzalez\Desktop\OnlineERP\CapaDAL\obj\Release\CapaDAL.pdb

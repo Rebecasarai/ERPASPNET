@@ -113,7 +113,7 @@ function displayResult() {
             x.value = 1;
             x.min = "1";
             x.value = "1";
-            x.max = "123";
+            x.max = productoSeleccionado.Stock;
             
             var precioInput = document.createElement("INPUT");
             precioInput.setAttribute("type", "number");
@@ -123,8 +123,7 @@ function displayResult() {
             precioInput.min = "1";
             precioInput.setAttribute("value", productoSeleccionado.PrecioUnitario);
             precioInput.value = productoSeleccionado.PrecioUnitario;
-
-
+            
             
             x.onkeypress = function (evt) {
                 evt.preventDefault();
@@ -145,17 +144,18 @@ function displayResult() {
             if (td5.firstChild == null) {
 
                 td5.innerHTML = productoSeleccionado.PrecioUnitario;
+               // resultado = productoSeleccionado.PrecioUnitario;
             }
 
             precioInput.addEventListener("change", function () {
                 var mFila = this.getAttribute("fila");
-                resultado = parseFloat(document.getElementById("cantidadinput" + fila).value) * parseFloat(document.getElementById("precioinput" + fila).value);
+                resultado = parseFloat(document.getElementById("cantidadinput" + mFila).value) * parseFloat(document.getElementById("precioinput" + mFila).value);
                 td5.innerHTML = resultado;
             });
 
             x.addEventListener("change", function () {
                 var mFila = this.getAttribute("fila");
-                resultado = parseFloat(document.getElementById("cantidadinput" + fila).value) * parseFloat(document.getElementById("precioinput" + fila).value);
+                resultado = parseFloat(document.getElementById("cantidadinput" + mFila).value) * parseFloat(document.getElementById("precioinput" + mFila).value);
                 td5.innerHTML = resultado;
             });
         }
@@ -206,9 +206,12 @@ function confirmarPedido() {
 
     var lineas = [];
     for (i = 1; i < rowLength; i++) {
+
         var oCells = oTable.rows.item(i).cells;
         var cellLength = oCells.length;
         lineasDeProductos = cellLength;
+
+        var idProductoLinea = document.getElementsByClassName("productoId")[i - 1].id;
         
         for (var j = 0; j < cellLength; j++) {
             if ($(oTable.rows.item(i)).is(':visible')) {
@@ -217,19 +220,17 @@ function confirmarPedido() {
                 } else if (j == 3) {
                     pedido = pedido + oCells.item(j).firstChild.value + " | ";
                 }
-
                 if (j == 3) {
                     cantidad = parseFloat(oCells.item(j).firstChild.value);
                 }
-
                 if (j == 5) {
                     precioTotal += parseFloat(oCells.item(j).firstChild.textContent);
+                    resultado = parseFloat(oCells.item(j).firstChild.textContent);
                 }
 
             }
         }
 
-        var idProductoLinea = document.getElementsByClassName("productoId")[0].id;
         var linea = new LineaDePedido(idProductoLinea, cantidad, resultado);
         lineas.push(linea);
 
@@ -239,7 +240,6 @@ function confirmarPedido() {
     var pedidoPost = new PedidoConLineaPedido(lineas, 1, date, precioTotal);
 
     addPedido(pedidoPost);
-    document.getElementById("pedidoHecho").innerHTML = pedido;
     borrarTabla();
 }
 
@@ -287,6 +287,8 @@ function addPedido(pedido) {
             //location.reload();
             nuevoListar();
 
+        } else if (xhr.status == "500") {
+            window.location.replace("../Views/AlgoMal.html");
         }
     }
     xhr.send(json);

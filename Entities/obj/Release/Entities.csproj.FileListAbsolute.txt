@@ -1,0 +1,6 @@
+C:\Users\rsgonzalez\Desktop\OnlineERP\Entities\bin\Release\Entities.dll
+C:\Users\rsgonzalez\Desktop\OnlineERP\Entities\bin\Release\Entities.pdb
+C:\Users\rsgonzalez\Desktop\OnlineERP\Entities\obj\Release\Entities.csprojResolveAssemblyReference.cache
+C:\Users\rsgonzalez\Desktop\OnlineERP\Entities\obj\Release\Entities.csproj.CoreCompileInputs.cache
+C:\Users\rsgonzalez\Desktop\OnlineERP\Entities\obj\Release\Entities.dll
+C:\Users\rsgonzalez\Desktop\OnlineERP\Entities\obj\Release\Entities.pdb

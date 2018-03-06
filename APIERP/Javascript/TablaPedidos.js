@@ -114,7 +114,12 @@ function editarPedido() {
             lineas = data.LineasPedido;
             $('#tbodyvacio').html('');
             $('#tituloModalEditar').html('Pedido ' + data.ID + ' realizado en fecha ' + data.Fecha);
-            $('#botonEditarCancelar').click(cancelarPedidoParametro(data.ID));
+            document.getElementById('botonEditarCancelar').setAttribute("idObjeto", data.ID);
+            document.getElementById('botonEditarCancelar').addEventListener("click", function ()
+            {
+                var id = this.getAttribute("idObjeto");
+                cancelarPedidoParametro(id);
+            });
             for (var i = 0; i < lineas.length; i++) {
                 for (var j = 0; j < arrayProductos.length; j++) {
                     if (lineas[i].IDProducto == arrayProductos[j].ID) {
@@ -130,7 +135,6 @@ function editarPedido() {
                 
                     }
                 }
-
             }
         },
         error: function (e) {
@@ -142,6 +146,8 @@ function editarPedido() {
 
 
 function actualizarImporte() {
+
+
 }
 
 

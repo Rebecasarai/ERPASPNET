@@ -1,0 +1,245 @@
+﻿<!DOCTYPE html>
+<html class="menu">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="google" value="notranslate" />
+    <title>ERP </title>
+    <link rel="shortcut icon" href="../Assets/logoERP.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link href="../Styles/estilo.css" rel="stylesheet" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
+    <script src="../Javascript/dynamicmenu.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <script src="../Javascript/Analisis.js"></script>
+    <script src="../Javascript/validation.js"></script>
+    <script src="../LibreriasJs/jquery.min.js"></script>
+    <script src="../LibreriasJs/CustomBootstrap.js"></script>
+    <link rel="stylesheet" href="../LibreriasJs/bootstrap.min.css">
+    <link rel="stylesheet" href="../Styles/contact.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script src="../Javascript/LineaDePedido.js"></script>
+    <script src="../Javascript/PedidoConLineaPedido.js"></script>
+    <script src="../Javascript/tablaGestion.js"></script>
+    <script src="../Javascript/TablaPedidos.js"></script>
+    <script src="../LibreriasJs/jquery.twbsPagination.min.js"></script>
+    
+
+</head>
+<body>
+    <nav class="main-menu" id="mainmanu">
+        <!--logo-->
+        <div class="menuLogo">
+            <img src="../Assets/logoERP.png" id="erplogo" class="img-responsive logoImg" />
+        </div>
+        <!--<div class="settings"></div>-->
+        <div class="scrollbar" id="style-1">
+            <ul id="menu">
+                <!--home-->
+                <li class="active">
+                    <a href="#Pedidos">
+                        <i class="fa fa-home fa-lg"></i>
+                        <span class="nav-text">Pedidos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#Analisis">
+                        <i class="fa fa-money fa-lg"></i>
+                        <span class="nav-text">Analisis</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#Construccion">
+                        <i class="fa  fa-user fa-lg"></i>
+                        <span class="nav-text">Contacto</span>
+                    </a>
+                </li>
+                <li class="darkerli">
+                    <a href="#Construccion">
+                        <i class="fa fa-shopping-cart"></i>
+                        <span class="nav-text">EN CONSTRUCCION</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#Construccion">
+                        <i class="fa fa-cog"></i>
+                        <span class="nav-text">AJUSTES</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../Views/login.html">
+                        <i class="fa fa-lightbulb-o fa-lg"></i>
+                        <span class="nav-text">
+                            Cerrar sesión
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Añadir nuevo pedido</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="table-container">
+                            <h2 id="tituloModal"></h2>
+                            <table id="table1">
+                                <thead id="table-head">
+                                    <tr>
+                                        <th>Producto</th>
+                                        <th>Stock</th>
+                                        <th>Descripcion</th>
+                                        <th>Cantidad</th>
+                                        <th>Precio Unitario</th>
+                                        <th>Precio Total</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <br />
+                        <button type="button"  class="btn btn-default" onclick="displayResult()">Añadir producto</button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" onclick="borrarTabla()" class="btn btn-default">Borrar pedido</button>
+                        <button type="button" id="confirmarPedido" class="btn btn-default" data-dismiss="modal">Confirmar pedido</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="modalEditar" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Añadir nuevo pedido</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="table-container">
+                            <h2 id="tituloModalEditar"></h2>
+                            <table id="table2">
+                                <thead id="table-head">
+                                    <tr>
+                                        <th>Producto</th>
+                                        <th>Stock</th>
+                                        <th>Descripcion</th>
+                                        <th>Cantidad</th>
+                                        <th>Precio Unitario</th>
+                                        <th>Precio Total</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbodyvacio"></tbody>
+                            </table>
+                            <div id="pager">
+                                <ul id="pagination2" class="pagination-sm"></ul>
+                            </div>
+                        </div>
+                        <br />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="botonEditarCancelar"  class="btn btn-default">Cancelar pedido</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="contenido" class="invisible">
+        </div>
+        <!--Parte Tabla Pedidos-->
+        <div id="Pedidos" class="visible" style="color:black !important;">
+            <div class="row">
+                <div class="jumbotron page-header cabeceraPedidos">
+                    <h1>Pedidos Realizados</h1>
+                    <p>
+                        Navegue entre sus ultimos pedidos de forma sencilla y responsive
+                    </p>
+                </div>
+                <!-- Trigger the modal with a button -->
+                <button type="button" class="btn btn-info btn-lg btn-right" id="btnHacerPedido" data-toggle="modal" data-target="#myModal">Hacer Pedido</button>
+                <p id="pedidoHecho"></p>
+            </div>
+            <div class="row">
+                <div class="input-group" id="campoBuscador">
+                    <div class="input-group-btn search-panel">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <span id="search_concept">Filtrar por</span> <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#ID">ID</a></li>
+                            <li><a href="#Cliente">Cliente</a></li>
+                            <li><a href="#Fecha">Fecha</a></li>
+                            <li><a href="#Importe">Importe</a></li>
+                        </ul>
+                    </div>
+                    <input type="hidden" name="search_param" value="all" id="search_param" onchange="cargarBuscador()">
+                    <input type="text" id="inputBuscar" onkeyup="cargarBuscador()" class="form-control" name="x" placeholder="Buscar pedido...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                    </span>
+                </div>
+                <div>
+                    <table id="tablePedidos" data-toggle="table" class="table table-responsive table-striped table-hover" style="margin: 20px 0px 0px; color: black;">
+                        <thead>
+                            <tr>
+                                <th id="idCabecera" data-sortable="true">ID</th>
+                                <th id="nombreCabecera" data-sortable="true">Cliente</th>
+                                <th id="fechaCabecera" data-sortable="true">Fecha</th>
+                                <th id="precioCabecera" data-sortable="true" data-sorter="priceSorter">Importe</th>
+                                <th style="text-align: center;">Cancelar</th>
+                            </tr>
+                        </thead>
+                        <tbody id="emp_body"></tbody>
+                    </table>
+                    <div id="pager">
+                        <ul id="pagination" class="pagination-sm"></ul>
+                    </div>
+                </div>
+                <div id="pedidosCompleto">
+                </div>
+            </div>
+        </div>
+        <!--Parte Tabla Pedidos-->
+        <div id="Construccion" class="invisible">
+            <img class="img-responsive" src="https://i.imgur.com/a7qpViw.png" />
+            <img src="https://s3-us-west-2.amazonaws.com/pondrin.com/profile_pictures/1058/KAWAII%20PANDA.gif" width="450" class="gif" />
+        </div>
+        <div id="PedidosCancelados" class="invisible">
+            <div class="row">
+                <h2 style="text-align:center;">Cargando</h2>
+            </div>
+        </div>
+        <div id="Analisis" class="invisible">
+            <h2>Analisis del Negocio</h2>
+            <div class="muestra">
+                <h2>Nivel de Ventas</h2>
+                <canvas id="line-chart" max-width="800" min-height="450"></canvas>
+            </div>
+            <div class="muestra">
+                <h2>Productos más vendidos</h2>
+                <canvas id="coolAnalisisProductos" max-width="800" min-height="450"></canvas>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript"></script>

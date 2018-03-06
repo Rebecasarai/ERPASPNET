@@ -81,6 +81,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Error.png" />
     <Content Include="Assets\logoERP.png" />
     <Content Include="Styles\bootstrap.css" />
     <Content Include="Styles\bootstrap.min.css" />
@@ -113,6 +114,7 @@
     <Content Include="LibreriasJs\modernizr-2.6.2.js" />
     <Content Include="Javascript\tablaGestion.js" />
     <Content Include="Styles\estilo.css" />
+    <Content Include="Views\AlgoMal.html" />
     <Content Include="Views\EnConstruccion.html" />
     <Content Include="Views\Index.html" />
     <Content Include="Views\login.html" />
@@ -134,6 +136,7 @@
     <None Include="packages.config" />
     <Content Include="LibreriasJs\jquery-1.10.2.min.map" />
     <Content Include="Views\Index2.cshtml" />
+    <None Include="Properties\PublishProfiles\ERPDAM - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,0 +1,10 @@
+C:\Users\rsgonzalez\Desktop\OnlineERP\CapaBL\bin\Release\CapaBL.dll
+C:\Users\rsgonzalez\Desktop\OnlineERP\CapaBL\bin\Release\CapaBL.pdb
+C:\Users\rsgonzalez\Desktop\OnlineERP\CapaBL\bin\Release\CapaDAL.dll
+C:\Users\rsgonzalez\Desktop\OnlineERP\CapaBL\bin\Release\Entities.dll
+C:\Users\rsgonzalez\Desktop\OnlineERP\CapaBL\bin\Release\CapaDAL.pdb
+C:\Users\rsgonzalez\Desktop\OnlineERP\CapaBL\bin\Release\Entities.pdb
+C:\Users\rsgonzalez\Desktop\OnlineERP\CapaBL\obj\Release\CapaBL.csprojResolveAssemblyReference.cache
+C:\Users\rsgonzalez\Desktop\OnlineERP\CapaBL\obj\Release\CapaBL.csproj.CoreCompileInputs.cache
+C:\Users\rsgonzalez\Desktop\OnlineERP\CapaBL\obj\Release\CapaBL.dll
+C:\Users\rsgonzalez\Desktop\OnlineERP\CapaBL\obj\Release\CapaBL.pdb
